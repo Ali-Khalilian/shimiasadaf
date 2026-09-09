@@ -1,0 +1,6 @@
+{
+  "name": "شیمیا صدف | Shimia Sadaf",
+  "description": "ریدیزاین مدرن، ریسپانسیو و دو زبانه (فارسی و انگلیسی) وب‌سایت شیمیا صدف، طراح و تولیدکننده پایانه‌های پرداخت هوشمند M300 و M600",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
