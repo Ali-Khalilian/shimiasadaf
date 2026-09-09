@@ -22,6 +22,9 @@ module.exports = {
         vazir: ['Vazirmatn', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         en: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
+      maxWidth: {
+        '8xl': '90rem',
+      },
     },
   },
   plugins: [],

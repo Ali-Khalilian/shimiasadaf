@@ -58,15 +58,15 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
   const currentSlide = slides[activeSlideIndex];
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#004563] text-white">
+    <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#004563] text-white w-full">
       {/* Background Decorative Pattern & Gradients */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400 rounded-full filter blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#939598] rounded-full filter blur-[120px]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left / Text Content (7 cols) */}
           <div className="lg:col-span-7 z-10 space-y-6">
@@ -98,17 +98,17 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
             {/* Quick Specs Grid - با انیمیشن stagger */}
             <div 
               key={`specs-${activeSlideIndex}`}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3"
             >
               {currentSlide.highlights.map((h, idx) => (
                 <div
                   key={idx}
                   style={{ animationDelay: `${150 + idx * 50}ms` }}
-                  className="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-3 text-start hover:bg-white/15 hover:scale-105 hover:border-white/25 transition-all duration-300 animate-slide-up-fade"
+                  className="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl p-2 sm:p-3 text-start hover:bg-white/15 hover:scale-105 hover:border-white/25 transition-all duration-300 animate-slide-up-fade min-w-0"
                 >
-                  <div className="text-slate-300 text-xs font-medium mb-1 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse-subtle"></span>
-                    {h.label}
+                  <div className="text-slate-300 text-xs font-medium mb-1 flex items-center gap-1 truncate">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse-subtle shrink-0"></span>
+                    <span className="truncate">{h.label}</span>
                   </div>
                   <div className="text-white text-xs sm:text-sm font-bold truncate">
                     {h.value}
@@ -140,12 +140,12 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
             </div>
 
             {/* Slider Navigation Dots and Switcher */}
-            <div className="flex items-center gap-4 pt-6 border-t border-white/15">
-              <span className="text-xs text-slate-300 font-medium hidden sm:block">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pt-6 border-t border-white/15">
+              <span className="text-xs text-slate-300 font-medium">
                 {isRtl ? 'سوئیچ مدل‌های پرچمدار:' : 'Select Terminal Model:'}
               </span>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 {slides.map((s, idx) => (
                   <button
                     key={s.id}
@@ -162,7 +162,7 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
                 ))}
               </div>
 
-              <div className="flex items-center gap-1 ms-auto">
+              <div className="flex items-center gap-1 sm:ms-auto">
                 <button
                   onClick={() => handleSlideChange('prev')}
                   disabled={isAnimating}
@@ -230,18 +230,18 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               </div>
 
               {/* Bottom Quick Feature Highlights */}
-              <div className="bg-black/20 rounded-xl p-3 border border-white/10 flex items-center justify-between text-xs text-slate-200 animate-slide-up-fade animation-delay-200">
-                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform">
-                  <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle" />
-                  <span>{currentSlide.id === 'm600' ? '5000 mAh Dual' : '2600 mAh Li-Po'}</span>
+              <div className="bg-black/20 rounded-xl p-2.5 sm:p-3 border border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-slate-200 animate-slide-up-fade animation-delay-200">
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">{currentSlide.id === 'm600' ? '5000 mAh' : '2600 mAh'}</span>
                 </div>
-                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform">
-                  <Cpu className="w-4 h-4 text-sky-400 animate-pulse-subtle" />
-                  <span>{currentSlide.id === 'm600' ? 'Quad Cortex-A7' : 'Secure 32-bit'}</span>
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <Cpu className="w-4 h-4 text-sky-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">{currentSlide.id === 'm600' ? 'Quad A7' : 'Secure 32-bit'}</span>
                 </div>
-                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform">
-                  <ShieldCheck className="w-4 h-4 text-amber-400 animate-pulse-subtle" />
-                  <span>PCI PTS 7.x</span>
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-amber-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">PCI PTS 7.x</span>
                 </div>
               </div>
 

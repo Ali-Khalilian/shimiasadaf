@@ -9,10 +9,10 @@ export default function Ticker({ lang, content }) {
   const items = [1, 2, 3, 4];
 
   return (
-    <div className="py-3 bg-[#003147] text-white overflow-hidden border-y border-white/10 relative z-20">
+    <div className="py-3 bg-[#003147] text-white overflow-hidden border-y border-white/10 relative z-20 w-full">
       <div className="flex select-none whitespace-nowrap animate-ticker items-center">
         {items.map((i) => (
-          <div key={i} className="flex items-center gap-6 mx-4">
+          <div key={i} className="flex items-center gap-6 mx-4 shrink-0">
             <div className="w-5 h-5 rounded-full bg-white/10 p-1 flex items-center justify-center shrink-0">
               <img
                 src="/images/shimia-sadaf-logo-white-2.png"

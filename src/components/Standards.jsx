@@ -6,12 +6,12 @@ export default function Standards({ lang, content }) {
   const standards = content.standards;
 
   return (
-    <section id="standards" className="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <section id="standards" className="py-20 bg-slate-900 text-white relative overflow-hidden w-full">
       {/* Subtle background glow */}
       <div className="absolute top-0 end-0 w-96 h-96 bg-[#004563] rounded-full filter blur-[100px] opacity-40 pointer-events-none"></div>
       <div className="absolute bottom-0 start-0 w-96 h-96 bg-sky-900 rounded-full filter blur-[100px] opacity-30 pointer-events-none"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-sky-300 text-xs font-bold uppercase tracking-wider mb-4">

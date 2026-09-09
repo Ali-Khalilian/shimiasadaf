@@ -11,7 +11,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
   if (!productId) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fadeIn overflow-hidden">
       <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col border border-slate-200">
         {/* Modal Header */}
         <div className="bg-[#004563] text-white p-6 flex items-center justify-between">
@@ -32,36 +32,36 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
         </div>
 
         {/* Modal Navigation Tabs */}
-        <div className="flex border-b border-slate-200 bg-slate-50 px-6">
+        <div className="flex border-b border-slate-200 bg-slate-50 px-6 overflow-x-auto">
           <button
             onClick={() => setActiveTab('specs')}
-            className={`py-3 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+            className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'specs'
                 ? 'border-[#004563] text-[#004563]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            {isRtl ? 'مشخصات فنی تفصیلی' : 'Technical Specifications'}
+            {isRtl ? 'مشخصات فنی' : 'Specifications'}
           </button>
           <button
             onClick={() => setActiveTab('features')}
-            className={`py-3 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+            className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'features'
                 ? 'border-[#004563] text-[#004563]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            {isRtl ? 'ویژگی‌های کلیدی' : 'Key Capabilities'}
+            {isRtl ? 'ویژگی‌ها' : 'Capabilities'}
           </button>
           <button
             onClick={() => setActiveTab('security')}
-            className={`py-3 px-4 text-xs sm:text-sm font-bold border-b-2 transition-all ${
+            className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'security'
                 ? 'border-[#004563] text-[#004563]'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            {isRtl ? 'استانداردها و امنیت' : 'Security & Standards'}
+            {isRtl ? 'امنیت' : 'Security'}
           </button>
         </div>
 

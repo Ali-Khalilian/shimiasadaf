@@ -12,8 +12,8 @@ export default function Products({ lang, content, onSelectProduct, onOpenContact
   });
 
   return (
-    <section id="products" className="py-20 bg-slate-50 text-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="products" className="py-20 bg-slate-50 text-slate-900 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-[#004563] text-xs font-bold uppercase tracking-wider mb-4">
@@ -131,44 +131,44 @@ export default function Products({ lang, content, onSelectProduct, onOpenContact
                 </div>
 
                 {/* Key Spec Grid */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6">
+                  <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <SlidersHorizontal className="w-3.5 h-3.5 text-[#004563]" />
-                      <span>{isRtl ? 'نمایشگر' : 'Display'}</span>
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <span className="truncate">{isRtl ? 'نمایشگر' : 'Display'}</span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-slate-800">
+                    <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
                       {prod.specs.display}
                     </div>
                   </div>
 
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Battery className="w-3.5 h-3.5 text-[#004563]" />
-                      <span>{isRtl ? 'باتری' : 'Battery'}</span>
+                      <Battery className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <span className="truncate">{isRtl ? 'باتری' : 'Battery'}</span>
                     </div>
-                    <div className="text-xs sm:text-sm font-bold text-slate-800">
+                    <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
                       {prod.specs.battery}
                     </div>
                   </div>
 
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Wifi className="w-3.5 h-3.5 text-[#004563]" />
-                      <span>{isRtl ? 'ارتباطات' : 'Connectivity'}</span>
+                      <Wifi className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <span className="truncate">{isRtl ? 'ارتباطات' : 'Connectivity'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
                       {prod.specs.connectivity}
                     </div>
                   </div>
 
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70">
+                  <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Printer className="w-3.5 h-3.5 text-[#004563]" />
-                      <span>{isRtl ? 'چاپگر' : 'Thermal Printer'}</span>
+                      <Printer className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <span className="truncate">{isRtl ? 'چاپگر' : 'Printer'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                      58mm High-Speed
+                      58mm
                     </div>
                   </div>
                 </div>

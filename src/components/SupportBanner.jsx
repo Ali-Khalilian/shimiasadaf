@@ -6,8 +6,8 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
   const support = content.support;
 
   return (
-    <section className="py-20 bg-slate-50 text-slate-900 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-slate-50 text-slate-900 border-b border-slate-200 w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Images Presentation (5 cols) */}
           <div className="lg:col-span-5 order-2 lg:order-1">

@@ -100,7 +100,7 @@ export default function Home() {
       {/* Main App */}
       <div
         dir={content.dir}
-        className={`min-h-screen flex flex-col font-vazir ${lang === 'en' ? 'font-en' : ''}`}
+        className={`min-h-screen flex flex-col font-vazir w-full overflow-x-hidden ${lang === 'en' ? 'font-en' : ''}`}
       >
         <Navbar
           lang={lang}

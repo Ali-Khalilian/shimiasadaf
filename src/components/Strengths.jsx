@@ -6,11 +6,11 @@ export default function Strengths({ lang, content }) {
   const strengths = content.strengths;
 
   return (
-    <section id="strengths" className="py-20 bg-[#004563] text-white relative overflow-hidden">
+    <section id="strengths" className="py-20 bg-[#004563] text-white relative overflow-hidden w-full">
       {/* Background accents */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-sky-200 text-xs font-bold uppercase tracking-wider mb-4">
