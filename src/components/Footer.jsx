@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import { Mail, Phone, ShieldCheck, ArrowUp } from 'lucide-react';
 
-export default function Footer({ lang, content, onNavigate, onOpenProduct }) {
+export default function Footer({ lang, content }) {
   const isRtl = lang === 'fa';
   const f = content.footer;
 
@@ -48,60 +49,60 @@ export default function Footer({ lang, content, onNavigate, onOpenProduct }) {
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-300">
               <li>
-                <button
-                  onClick={() => onNavigate('hero')}
+                <Link
+                  href="/"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.home}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('about')}
+                <Link
+                  href="/about"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.about}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('products')}
+                <Link
+                  href="/products"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.products}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('oem')}
+                <Link
+                  href="/oem"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.oem}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('standards')}
+                <Link
+                  href="/standards"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.standards}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('faqs')}
+                <Link
+                  href="/faqs"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.faqs}
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('contact')}
+                <Link
+                  href="/contact"
                   className="hover:text-white transition-colors"
                 >
                   {content.nav.contact}
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

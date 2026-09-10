@@ -4,14 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../src/components/Navbar';
 import Hero from '../src/components/Hero';
 import Ticker from '../src/components/Ticker';
-import AboutUs from '../src/components/AboutUs';
-import Standards from '../src/components/Standards';
-import Products from '../src/components/Products';
-import OemOdm from '../src/components/OemOdm';
 import Strengths from '../src/components/Strengths';
-import Faqs from '../src/components/Faqs';
 import SupportBanner from '../src/components/SupportBanner';
-import ContactSection from '../src/components/ContactSection';
 import Footer from '../src/components/Footer';
 import ProductModal from '../src/components/ProductModal';
 import Preloader from '../src/components/Preloader';
@@ -65,7 +59,7 @@ export default function Home() {
   };
 
   const handleOpenProduct = (productId) => {
-    setSelectedProductId(productId);
+    window.location.href = `/products?product=${productId}`;
   };
 
   const handleCloseProduct = () => {
@@ -73,7 +67,7 @@ export default function Home() {
   };
 
   const handleOpenContact = () => {
-    handleNavigate('contact');
+    window.location.href = '/contact';
   };
 
   const handlePreloaderFinish = () => {
@@ -106,9 +100,7 @@ export default function Home() {
           lang={lang}
           setLang={setLang}
           content={content}
-          activeSection={activeSection}
-          onNavigate={handleNavigate}
-          onOpenProduct={handleOpenProduct}
+          activeSection="hero"
         />
 
         <main className="flex-grow">
@@ -121,49 +113,18 @@ export default function Home() {
 
           <Ticker lang={lang} content={content} />
 
-          <AboutUs
-            lang={lang}
-            content={content}
-            onOpenProduct={handleOpenProduct}
-          />
-
-          <Standards lang={lang} content={content} />
-
-          <Products
-            lang={lang}
-            content={content}
-            onSelectProduct={handleOpenProduct}
-            onOpenContact={handleOpenContact}
-          />
-
-          <OemOdm
-            lang={lang}
-            content={content}
-            onOpenContact={handleOpenContact}
-          />
-
           <Strengths lang={lang} content={content} />
-
-          <Faqs
-            lang={lang}
-            content={content}
-            onOpenContact={handleOpenContact}
-          />
 
           <SupportBanner
             lang={lang}
             content={content}
             onOpenContact={handleOpenContact}
           />
-
-          <ContactSection lang={lang} content={content} />
         </main>
 
         <Footer
           lang={lang}
           content={content}
-          onNavigate={handleNavigate}
-          onOpenProduct={handleOpenProduct}
         />
 
         {selectedProductId && (

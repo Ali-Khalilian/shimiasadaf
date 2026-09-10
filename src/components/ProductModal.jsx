@@ -6,7 +6,7 @@ import { X, ShieldCheck, Cpu, Battery, Wifi, CreditCard, Printer, FileText, Chec
 export default function ProductModal({ productId, onClose, lang, content, onOpenContact }) {
   const isRtl = lang === 'fa';
   const product = content.products.items.find((p) => p.id === productId) || content.products.items[0];
-  const [activeTab, setActiveTab] = useState('specs'); // 'specs' | 'features' | 'security'
+  const [activeTab, setActiveTab] = useState('specs'); 
 
   if (!productId) return null;
 

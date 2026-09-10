@@ -11,7 +11,7 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
   const slides = content.hero.slides;
   const isRtl = lang === 'fa';
 
-  // Auto-advance slides every 7 seconds
+  
   const startAutoPlay = () => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     autoPlayRef.current = setInterval(() => {
@@ -41,7 +41,7 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
     });
 
     setTimeout(() => setIsAnimating(false), 600);
-    startAutoPlay(); // Reset auto-play timer
+    startAutoPlay();
   };
 
   const handleManualSlideChange = (index) => {
@@ -52,14 +52,13 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
     setActiveSlideIndex(index);
     
     setTimeout(() => setIsAnimating(false), 600);
-    startAutoPlay(); // Reset auto-play timer
+    startAutoPlay();
   };
 
   const currentSlide = slides[activeSlideIndex];
 
   return (
     <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#004563] text-white w-full">
-      {/* Background Decorative Pattern & Gradients */}
       <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400 rounded-full filter blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#939598] rounded-full filter blur-[120px]"></div>
@@ -68,9 +67,7 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left / Text Content (7 cols) */}
           <div className="lg:col-span-7 z-10 space-y-6">
-            {/* Pill Tag - با انیمیشن */}
             <div 
               key={`badge-${activeSlideIndex}`}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 border border-white/20 text-xs sm:text-sm font-medium text-sky-200 backdrop-blur-md animate-slide-fade-in"
@@ -79,7 +76,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               <span>{currentSlide.badge}</span>
             </div>
 
-            {/* Main Headline - با انیمیشن */}
             <h1 
               key={`title-${activeSlideIndex}`}
               className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white animate-slide-up-fade"
@@ -87,7 +83,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               {currentSlide.title}
             </h1>
 
-            {/* Subtitle - با انیمیشن */}
             <p 
               key={`subtitle-${activeSlideIndex}`}
               className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-light animate-slide-up-fade animation-delay-100"
@@ -95,7 +90,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               {currentSlide.subtitle}
             </p>
 
-            {/* Quick Specs Grid - با انیمیشن stagger */}
             <div 
               key={`specs-${activeSlideIndex}`}
               className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3"
@@ -117,7 +111,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               ))}
             </div>
 
-            {/* CTA Buttons - با انیمیشن */}
             <div 
               key={`cta-${activeSlideIndex}`}
               className="flex flex-wrap items-center gap-4 animate-slide-up-fade animation-delay-400"
@@ -139,7 +132,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               </button>
             </div>
 
-            {/* Slider Navigation Dots and Switcher */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pt-6 border-t border-white/15">
               <span className="text-xs text-slate-300 font-medium">
                 {isRtl ? 'سوئیچ مدل‌های پرچمدار:' : 'Select Terminal Model:'}
@@ -183,22 +175,18 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
             </div>
           </div>
 
-          {/* Right / Visual Showcase (5 cols) */}
           <div className="lg:col-span-5 relative flex justify-center">
-            {/* Glow Aura - با انیمیشن */}
             <div 
               key={`glow-${activeSlideIndex}`}
               className="absolute inset-0 bg-sky-500/20 rounded-3xl filter blur-2xl transform scale-90 animate-pulse-glow"
             ></div>
 
-            {/* Hardware Showcase Card */}
             <div 
               key={`card-${activeSlideIndex}`}
               className={`relative w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden group ${
                 direction === 'next' ? 'animate-slide-in-right' : 'animate-slide-in-left'
               }`}
             >
-              {/* Top Card Badge */}
               <div className="flex items-center justify-between pb-4 border-b border-white/15 text-xs text-slate-200">
                 <span className="font-mono uppercase font-bold tracking-wider text-sky-300 animate-slide-fade-in">
                   {currentSlide.id.toUpperCase()} SMART POS
@@ -221,7 +209,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
                   }}
                 />
                 
-                {/* Floating particles effect */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-sky-400 rounded-full animate-float-particle opacity-60"></div>
                   <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-float-particle animation-delay-1000 opacity-50"></div>
@@ -229,7 +216,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
                 </div>
               </div>
 
-              {/* Bottom Quick Feature Highlights */}
               <div className="bg-black/20 rounded-xl p-2.5 sm:p-3 border border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-slate-200 animate-slide-up-fade animation-delay-200">
                 <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
                   <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle shrink-0" />
@@ -245,7 +231,6 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
                 </div>
               </div>
 
-              {/* Shine effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
             </div>
           </div>

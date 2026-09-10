@@ -9,7 +9,6 @@ export default function Preloader({ isLoading, onFinish }) {
 
   useEffect(() => {
     if (!isLoading) {
-      // شروع fade out
       setFadeOut(true);
       const timer = setTimeout(() => {
         if (onFinish) onFinish();
@@ -19,11 +18,10 @@ export default function Preloader({ isLoading, onFinish }) {
   }, [isLoading, onFinish]);
 
   useEffect(() => {
-    // شبیه‌سازی پیشرفت لود
     if (isLoading && progress < 100) {
       const interval = setInterval(() => {
         setProgress((prev) => {
-          if (prev >= 95) return prev; // متوقف شدن در 95% تا واقعا لود بشه
+          if (prev >= 95) return prev;
           return prev + Math.random() * 15;
         });
       }, 200);

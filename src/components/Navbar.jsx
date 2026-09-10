@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Globe, Menu, X, ChevronDown, Mail, Phone, ShieldCheck, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ lang, setLang, content, activeSection, onNavigate, onOpenProduct }) {
@@ -81,9 +82,9 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo Brand */}
-          <button
+          <Link
+            href="/"
             id="brand-logo-btn"
-            onClick={() => handleNavClick('hero')}
             className="flex items-center gap-3 group text-start focus:outline-none"
           >
             <div className="w-10 h-10 rounded-xl bg-white/10 p-1.5 flex items-center justify-center border border-white/20 group-hover:border-white/40 transition-all shadow-inner">
@@ -104,13 +105,13 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                 {content.brand.tagline}
               </p>
             </div>
-          </button>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            <button
+            <Link
+              href="/"
               id="nav-link-home"
-              onClick={() => handleNavClick('hero')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'hero'
                   ? 'text-white bg-white/15 shadow-sm'
@@ -118,7 +119,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.home}
-            </button>
+            </Link>
 
             {/* Products Dropdown */}
             <div
@@ -126,9 +127,9 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               onMouseEnter={() => setProductsDropdown(true)}
               onMouseLeave={() => setProductsDropdown(false)}
             >
-              <button
+              <Link
+                href="/products"
                 id="nav-link-products"
-                onClick={() => handleNavClick('products')}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 whitespace-nowrap ${
                   activeSection === 'products'
                     ? 'text-white bg-white/15'
@@ -137,15 +138,14 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               >
                 <span>{content.nav.products}</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsDropdown ? 'rotate-180' : ''}`} />
-              </button>
+              </Link>
 
               {productsDropdown && (
                 <div className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} pt-2 w-56 z-50`}>
                   <div className="bg-[#003147] border border-white/15 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
-                    <button
+                    <Link
+                      href="/products?product=m300"
                       onClick={() => {
-                        handleNavClick('products');
-                        if (onOpenProduct) onOpenProduct('m300');
                         setProductsDropdown(false);
                       }}
                       className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
@@ -159,12 +159,11 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                         </div>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
-                    </button>
+                    </Link>
 
-                    <button
+                    <Link
+                      href="/products?product=m600"
                       onClick={() => {
-                        handleNavClick('products');
-                        if (onOpenProduct) onOpenProduct('m600');
                         setProductsDropdown(false);
                       }}
                       className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
@@ -178,15 +177,15 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                         </div>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               )}
             </div>
 
-            <button
+            <Link
+              href="/oem"
               id="nav-link-oem"
-              onClick={() => handleNavClick('oem')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'oem'
                   ? 'text-white bg-white/15'
@@ -194,11 +193,11 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.oem}
-            </button>
+            </Link>
 
-            <button
+            <Link
+              href="/about"
               id="nav-link-about"
-              onClick={() => handleNavClick('about')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'about'
                   ? 'text-white bg-white/15'
@@ -206,11 +205,11 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.about}
-            </button>
+            </Link>
 
-            <button
+            <Link
+              href="/standards"
               id="nav-link-standards"
-              onClick={() => handleNavClick('standards')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'standards'
                   ? 'text-white bg-white/15'
@@ -218,11 +217,11 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.standards}
-            </button>
+            </Link>
 
-            <button
+            <Link
+              href="/faqs"
               id="nav-link-faqs"
-              onClick={() => handleNavClick('faqs')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'faqs'
                   ? 'text-white bg-white/15'
@@ -230,11 +229,11 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.faqs}
-            </button>
+            </Link>
 
-            <button
+            <Link
+              href="/contact"
               id="nav-link-contact"
-              onClick={() => handleNavClick('contact')}
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeSection === 'contact'
                   ? 'text-white bg-white/15'
@@ -242,7 +241,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               }`}
             >
               {content.nav.contact}
-            </button>
+            </Link>
           </nav>
 
           {/* Right Action Area: Language switcher + CTA button */}
@@ -263,13 +262,13 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
             </button>
 
             {/* Desktop Contact CTA */}
-            <button
+            <Link
+              href="/contact"
               id="navbar-cta-btn"
-              onClick={() => handleNavClick('contact')}
               className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-white text-[#004563] font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all shadow-md active:scale-95"
             >
               {content.nav.contactBtn}
-            </button>
+            </Link>
 
             {/* Mobile Hamburger Button */}
             <button
@@ -288,63 +287,65 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#003147] border-b border-white/10 px-4 pt-3 pb-6 mt-3 animate-fadeIn">
           <div className="flex flex-col space-y-1">
-            <button
-              onClick={() => handleNavClick('hero')}
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.home}
-            </button>
-            <button
-              onClick={() => handleNavClick('products')}
+            </Link>
+            <Link
+              href="/products"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors flex items-center justify-between"
             >
               <span>{content.nav.products}</span>
               <span className="text-xs bg-white/10 text-sky-200 px-2 py-0.5 rounded">M300 & M600</span>
-            </button>
-            <button
-              onClick={() => handleNavClick('oem')}
+            </Link>
+            <Link
+              href="/oem"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.oem}
-            </button>
-            <button
-              onClick={() => handleNavClick('about')}
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.about}
-            </button>
-            <button
-              onClick={() => handleNavClick('standards')}
+            </Link>
+            <Link
+              href="/standards"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.standards}
-            </button>
-            <button
-              onClick={() => handleNavClick('strengths')}
-              className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
-            >
-              {content.nav.strengths}
-            </button>
-            <button
-              onClick={() => handleNavClick('faqs')}
+            </Link>
+            <Link
+              href="/faqs"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.faqs}
-            </button>
-            <button
-              onClick={() => handleNavClick('contact')}
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors"
             >
               {content.nav.contact}
-            </button>
+            </Link>
 
             <div className="pt-4 mt-2 border-t border-white/10 flex flex-col gap-3">
-              <button
-                onClick={() => handleNavClick('contact')}
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="w-full py-2.5 rounded-lg bg-white text-[#004563] font-bold text-center text-sm shadow"
               >
                 {content.nav.contactBtn}
-              </button>
+              </Link>
 
               <div className="flex items-center justify-between text-xs text-slate-300 pt-2">
                 <a href="mailto:info@shimiasadaf.com" className="flex items-center gap-1">
