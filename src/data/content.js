@@ -270,7 +270,7 @@ export const siteContent = {
       ]
     },
     support: {
-      badge: 'پشتیبانی و ارتباط',
+      badge: 'پشتیبانی و ارتباط ۲۴ ساعته',
       title: 'ما همواره',
       titleHighlight: 'در کنار شما هستیم',
       desc: 'با تیم پشتیبانی تخصصی، پاسخگویی سریع و خدمات پس از فروش قدرتمند، آماده رفع هرگونه مشکل و تامین نیازهای فنی و نرم‌افزاری شما بدون کمترین تأخیر.',
@@ -578,7 +578,7 @@ export const siteContent = {
       ]
     },
     support: {
-      badge: 'Support & Assistance',
+      badge: 'Support & Assistance 24/7',
       title: 'We Are Always',
       titleHighlight: 'By Your Side',
       desc: 'With our expert technical support team, rapid response times, and dependable post-sales assistance, we ensure seamless operations with zero downtime.',
