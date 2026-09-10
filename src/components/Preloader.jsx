@@ -37,7 +37,7 @@ export default function Preloader({ isLoading, onFinish }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-[#004563] via-[#003147] to-[#002233] transition-opacity duration-600 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-primary via-[#003147] to-[#002233] transition-opacity duration-600 ${
         fadeOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >

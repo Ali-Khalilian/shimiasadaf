@@ -53,7 +53,7 @@ export default function M300Page() {
 
           {/* Product Header */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden mb-8">
-            <div className="bg-[#004563] text-white p-6 sm:p-8">
+            <div className="bg-primary text-white p-6 sm:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-mono font-bold bg-white/20 text-white px-2.5 py-1 rounded-full uppercase">
                   M300
@@ -94,7 +94,7 @@ export default function M300Page() {
                   </div>
                   <button
                     onClick={handleOpenContact}
-                    className="w-full sm:w-auto px-6 py-3 bg-[#004563] text-white rounded-xl font-bold hover:bg-[#003147] transition-all shadow-lg"
+                    className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-[#003147] transition-all shadow-lg"
                   >
                     {isRtl ? 'درخواست قیمت و مشاوره' : 'Request Quote & Consultation'}
                   </button>
@@ -109,7 +109,7 @@ export default function M300Page() {
               onClick={() => setActiveTab('specs')}
               className={`py-4 px-6 text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
                 activeTab === 'specs'
-                  ? 'border-[#004563] text-[#004563] bg-sky-50'
+                  ? 'border-primary text-primary bg-sky-50'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`}
             >
@@ -119,7 +119,7 @@ export default function M300Page() {
               onClick={() => setActiveTab('features')}
               className={`py-4 px-6 text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
                 activeTab === 'features'
-                  ? 'border-[#004563] text-[#004563] bg-sky-50'
+                  ? 'border-primary text-primary bg-sky-50'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`}
             >
@@ -129,7 +129,7 @@ export default function M300Page() {
               onClick={() => setActiveTab('security')}
               className={`py-4 px-6 text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
                 activeTab === 'security'
-                  ? 'border-[#004563] text-[#004563] bg-sky-50'
+                  ? 'border-primary text-primary bg-sky-50'
                   : 'border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50'
               }`}
             >
@@ -195,7 +195,7 @@ export default function M300Page() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-[#004563] to-[#002b3d] rounded-3xl p-8 text-center shadow-xl">
+          <div className="bg-gradient-to-r from-primary to-[#002b3d] rounded-3xl p-8 text-center shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-3">
               {isRtl ? 'آماده سفارش M300 هستید؟' : 'Ready to Order M300?'}
             </h3>
@@ -207,7 +207,7 @@ export default function M300Page() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
                 onClick={handleOpenContact}
-                className="px-8 py-3 bg-white text-[#004563] rounded-xl font-bold hover:bg-slate-100 transition-all shadow-lg"
+                className="px-8 py-3 bg-white text-primary rounded-xl font-bold hover:bg-slate-100 transition-all shadow-lg"
               >
                 {isRtl ? 'تماس با ما' : 'Contact Us'}
               </button>

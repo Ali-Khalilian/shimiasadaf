@@ -14,7 +14,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-fadeIn overflow-hidden">
       <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col border border-slate-200">
         {/* Modal Header */}
-        <div className="bg-[#004563] text-white p-6 flex items-center justify-between">
+        <div className="bg-primary text-white p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-xs font-mono font-bold bg-white/20 text-white px-2.5 py-1 rounded-full uppercase">
               {product.id.toUpperCase()}
@@ -37,7 +37,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
             onClick={() => setActiveTab('specs')}
             className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'specs'
-                ? 'border-[#004563] text-[#004563]'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -47,7 +47,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
             onClick={() => setActiveTab('features')}
             className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'features'
-                ? 'border-[#004563] text-[#004563]'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -57,7 +57,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
             onClick={() => setActiveTab('security')}
             className={`py-3 px-3 sm:px-4 text-xs sm:text-sm font-bold border-b-2 transition-all whitespace-nowrap ${
               activeTab === 'security'
-                ? 'border-[#004563] text-[#004563]'
+                ? 'border-primary text-primary'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -144,7 +144,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 p-3 bg-slate-50/50">
                   <span className="font-semibold text-slate-500">{isRtl ? 'گواهینامه‌ها' : 'Certifications'}</span>
-                  <span className="sm:col-span-2 text-[#004563] font-bold">{product.specs.certifications}</span>
+                  <span className="sm:col-span-2 text-primary font-bold">{product.specs.certifications}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
                     key={idx}
                     className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-[#004563] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <p className="text-sm text-slate-700 leading-normal">{feat}</p>
                   </div>
                 ))}
@@ -174,7 +174,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
           {activeTab === 'security' && (
             <div className="space-y-4">
               <div className="p-4 bg-sky-50 border border-sky-200 rounded-xl">
-                <h5 className="font-bold text-[#004563] text-sm mb-2 flex items-center gap-2">
+                <h5 className="font-bold text-primary text-sm mb-2 flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5" />
                   <span>{isRtl ? 'امنیت تراکنش و انطباق سخت‌افزاری' : 'Hardware & Transactional Integrity'}</span>
                 </h5>
@@ -206,7 +206,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
         {/* Modal Footer Actions */}
         <div className="p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-slate-500 flex items-center gap-1.5">
-            <FileText className="w-4 h-4 text-[#004563]" />
+            <FileText className="w-4 h-4 text-primary" />
             <span>
               {isRtl
                 ? 'گارانتی ۱۸ ماهه رسمی و پشتیبانی سراسری قطعات'
@@ -226,7 +226,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
                 onClose();
                 onOpenContact();
               }}
-              className="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-[#004563] hover:bg-[#003147] text-white text-sm font-bold shadow-md transition-all active:scale-95"
+              className="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-primary hover:bg-[#003147] text-white text-sm font-bold shadow-md transition-all active:scale-95"
             >
               {isRtl ? 'ثبت سفارش / استعلام قیمت' : 'Inquire for Bulk Orders'}
             </button>

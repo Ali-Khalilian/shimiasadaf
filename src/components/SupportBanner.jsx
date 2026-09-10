@@ -23,7 +23,7 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
                     }}
                   />
                 </div>
-                <div className="p-4 bg-[#004563] text-white rounded-2xl shadow-md flex items-center gap-3">
+                <div className="p-4 bg-primary text-white rounded-2xl shadow-md flex items-center gap-3">
                   <Clock className="w-8 h-8 text-sky-300 shrink-0" />
                   <div>
                     <div className="text-xs text-sky-200">{isRtl ? 'زمان پاسخگویی' : 'Response Time'}</div>
@@ -34,7 +34,7 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
 
               <div className="space-y-4 pt-6">
                 <div className="p-4 bg-white border border-slate-200 rounded-2xl shadow-md flex items-center gap-3">
-                  <Headphones className="w-8 h-8 text-[#004563] shrink-0" />
+                  <Headphones className="w-8 h-8 text-primary shrink-0" />
                   <div>
                     <div className="text-xs text-slate-500">{isRtl ? 'پشتیبانی تخصصی' : 'Dedicated Care'}</div>
                     <div className="text-sm font-bold text-slate-900">{isRtl ? 'تیم مهندسی مستقر' : 'In-House Engineers'}</div>
@@ -56,14 +56,14 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
 
           {/* Text Info (7 cols) */}
           <div className="lg:col-span-7 order-1 lg:order-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-[#004563] text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-primary text-xs font-bold uppercase tracking-wider mb-4">
               <Headphones className="w-3.5 h-3.5" />
               <span>{support.badge}</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
               {support.title}{' '}
-              <span className="text-[#004563] relative inline-block">
+              <span className="text-primary relative inline-block">
                 {support.titleHighlight}
               </span>
             </h2>
@@ -76,14 +76,14 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <a
                 href="mailto:info@shimiasadaf.com"
-                className="p-4 bg-white border border-slate-200 rounded-2xl flex items-center gap-3.5 hover:border-[#004563] hover:shadow-md transition-all group"
+                className="p-4 bg-white border border-slate-200 rounded-2xl flex items-center gap-3.5 hover:border-primary hover:shadow-md transition-all group"
               >
-                <div className="w-11 h-11 rounded-xl bg-sky-50 text-[#004563] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-105 transition-transform">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs text-slate-500">{isRtl ? 'ارسال ایمیل مستقیم' : 'Direct Email'}</div>
-                  <div className="text-sm font-bold text-slate-900 group-hover:text-[#004563]">
+                  <div className="text-sm font-bold text-slate-900 group-hover:text-primary">
                     info@shimiasadaf.com
                   </div>
                 </div>
@@ -91,9 +91,9 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
 
               <a
                 href="tel:+8613522300616"
-                className="p-4 bg-white border border-slate-200 rounded-2xl flex items-center gap-3.5 hover:border-[#004563] hover:shadow-md transition-all group"
+                className="p-4 bg-white border border-slate-200 rounded-2xl flex items-center gap-3.5 hover:border-primary hover:shadow-md transition-all group"
               >
-                <div className="w-11 h-11 rounded-xl bg-sky-50 text-[#004563] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-11 h-11 rounded-xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-105 transition-transform">
                   <PhoneCall className="w-5 h-5" />
                 </div>
                 <div>
@@ -107,7 +107,7 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
 
             <button
               onClick={onOpenContact}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#004563] hover:bg-[#003147] text-white font-bold text-sm sm:text-base shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-[#003147] text-white font-bold text-sm sm:text-base shadow-md transition-all active:scale-95"
             >
               <span>{support.btn}</span>
               {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

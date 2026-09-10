@@ -59,7 +59,7 @@ export default function Hero({ lang, content, onOpenContact }) {
   const currentSlide = slides[activeSlideIndex];
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-[#004563] text-white w-full">
+    <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-primary text-white w-full">
       <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400 rounded-full filter blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#939598] rounded-full filter blur-[120px]"></div>
@@ -119,7 +119,7 @@ export default function Hero({ lang, content, onOpenContact }) {
               <Link
                 href={`/products/${currentSlide.id}`}
                 id={`hero-cta-${currentSlide.id}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#004563] font-bold text-sm sm:text-base hover:bg-sky-50 shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-primary font-bold text-sm sm:text-base hover:bg-sky-50 shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all"
               >
                 <span>{currentSlide.primaryCta}</span>
                 {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
@@ -146,7 +146,7 @@ export default function Hero({ lang, content, onOpenContact }) {
                     disabled={isAnimating}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${
                       activeSlideIndex === idx
-                        ? 'bg-white text-[#004563] shadow-md scale-105'
+                        ? 'bg-white text-primary shadow-md scale-105'
                         : 'bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white hover:scale-105'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >

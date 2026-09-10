@@ -17,13 +17,13 @@ export default function Products({ lang, content, onOpenContact }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-[#004563] text-xs font-bold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-primary text-xs font-bold uppercase tracking-wider mb-4">
             <Shield className="w-3.5 h-3.5" />
             <span>{products.badge}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
             {products.title}{' '}
-            <span className="text-[#004563] relative inline-block">
+            <span className="text-primary relative inline-block">
               {products.titleHighlight}
             </span>
           </h2>
@@ -43,7 +43,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 {/* Header info */}
                 <div className="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100">
                   <div>
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#004563] bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
                       {prod.tag}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-2">
@@ -75,7 +75,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 mb-6">
                   <div className="text-xs font-semibold text-slate-700 mb-2 flex items-center justify-between">
                     <span>{products.selectOs}</span>
-                    <span className="text-[#004563] font-bold uppercase">
+                    <span className="text-primary font-bold uppercase">
                       {selectedVariant[prod.id]}
                     </span>
                   </div>
@@ -87,7 +87,7 @@ export default function Products({ lang, content, onOpenContact }) {
                           onClick={() => setSelectedVariant({ ...selectedVariant, m300: 'rtos' })}
                           className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
                             selectedVariant.m300 === 'rtos'
-                              ? 'bg-[#004563] text-white shadow-sm'
+                              ? 'bg-primary text-white shadow-sm'
                               : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                           }`}
                         >
@@ -97,7 +97,7 @@ export default function Products({ lang, content, onOpenContact }) {
                           onClick={() => setSelectedVariant({ ...selectedVariant, m300: 'linux' })}
                           className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
                             selectedVariant.m300 === 'linux'
-                              ? 'bg-[#004563] text-white shadow-sm'
+                              ? 'bg-primary text-white shadow-sm'
                               : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                           }`}
                         >
@@ -110,7 +110,7 @@ export default function Products({ lang, content, onOpenContact }) {
                           onClick={() => setSelectedVariant({ ...selectedVariant, m600: 'android' })}
                           className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
                             selectedVariant.m600 === 'android'
-                              ? 'bg-[#004563] text-white shadow-sm'
+                              ? 'bg-primary text-white shadow-sm'
                               : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                           }`}
                         >
@@ -120,7 +120,7 @@ export default function Products({ lang, content, onOpenContact }) {
                           onClick={() => setSelectedVariant({ ...selectedVariant, m600: 'linux' })}
                           className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
                             selectedVariant.m600 === 'linux'
-                              ? 'bg-[#004563] text-white shadow-sm'
+                              ? 'bg-primary text-white shadow-sm'
                               : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                           }`}
                         >
@@ -135,7 +135,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6">
                   <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <SlidersHorizontal className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span className="truncate">{isRtl ? 'نمایشگر' : 'Display'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
@@ -145,7 +145,7 @@ export default function Products({ lang, content, onOpenContact }) {
 
                   <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Battery className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <Battery className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span className="truncate">{isRtl ? 'باتری' : 'Battery'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
@@ -155,7 +155,7 @@ export default function Products({ lang, content, onOpenContact }) {
 
                   <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Wifi className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <Wifi className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span className="truncate">{isRtl ? 'ارتباطات' : 'Connectivity'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
@@ -165,7 +165,7 @@ export default function Products({ lang, content, onOpenContact }) {
 
                   <div className="p-2 sm:p-3 bg-slate-50 rounded-xl border border-slate-200/70 min-w-0">
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1">
-                      <Printer className="w-3.5 h-3.5 text-[#004563] shrink-0" />
+                      <Printer className="w-3.5 h-3.5 text-primary shrink-0" />
                       <span className="truncate">{isRtl ? 'چاپگر' : 'Printer'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
@@ -178,7 +178,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 <div className="space-y-2 mb-8">
                   {prod.features.map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                      <div className="w-4 h-4 rounded-full bg-sky-100 text-[#004563] flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-4 h-4 rounded-full bg-sky-100 text-primary flex items-center justify-center shrink-0 mt-0.5">
                         <Check className="w-3 h-3" />
                       </div>
                       <span>{feat}</span>
@@ -192,7 +192,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 <Link
                   href={`/products/${prod.id}`}
                   id={`btn-details-${prod.id}`}
-                  className="flex-1 py-3 px-4 rounded-xl bg-[#004563] text-white font-bold text-xs sm:text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
+                  className="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
                 >
                   <span>{products.viewDetails}</span>
                   {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

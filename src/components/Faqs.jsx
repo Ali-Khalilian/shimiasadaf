@@ -25,14 +25,14 @@ export default function Faqs({ lang, content, onOpenContact }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left / Accordion (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-[#004563] text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 text-primary text-xs font-bold uppercase tracking-wider mb-4">
               <HelpCircle className="w-3.5 h-3.5" />
               <span>{faqs.badge}</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
               {faqs.title}{' '}
-              <span className="text-[#004563] relative inline-block">
+              <span className="text-primary relative inline-block">
                 {faqs.titleHighlight}
               </span>
             </h2>
@@ -48,7 +48,7 @@ export default function Faqs({ lang, content, onOpenContact }) {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={isRtl ? 'جستجو در سوالات و پاسخ‌ها...' : 'Search questions & answers...'}
-                className="w-full py-3 px-4 ps-11 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#004563] text-sm text-slate-900 transition-all shadow-xs"
+                className="w-full py-3 px-4 ps-11 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary text-sm text-slate-900 transition-all shadow-xs"
               />
               <Search className={`w-4 h-4 text-slate-400 absolute top-3.5 ${isRtl ? 'right-4' : 'left-4'}`} />
             </div>
@@ -62,7 +62,7 @@ export default function Faqs({ lang, content, onOpenContact }) {
                     key={faq.id}
                     className={`border rounded-2xl transition-all duration-200 overflow-hidden ${
                       isOpen
-                        ? 'border-[#004563]/30 bg-sky-50/40 shadow-sm'
+                        ? 'border-primary/30 bg-sky-50/40 shadow-sm'
                         : 'border-slate-200 bg-slate-50/60 hover:bg-slate-50'
                     }`}
                   >
@@ -71,14 +71,14 @@ export default function Faqs({ lang, content, onOpenContact }) {
                       className="w-full text-start p-4 sm:p-5 flex items-center justify-between gap-4 focus:outline-none"
                     >
                       <span className="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-slate-200 text-[#004563] flex items-center justify-center text-xs font-mono shrink-0">
+                        <span className="w-6 h-6 rounded-full bg-slate-200 text-primary flex items-center justify-center text-xs font-mono shrink-0">
                           {idx + 1}
                         </span>
                         <span>{faq.q}</span>
                       </span>
                       <ChevronDown
                         className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180 text-[#004563]' : ''
+                          isOpen ? 'rotate-180 text-primary' : ''
                         }`}
                       />
                     </button>
@@ -115,7 +115,7 @@ export default function Faqs({ lang, content, onOpenContact }) {
               </div>
 
               <h4 className="text-xl font-black text-slate-900 mb-2 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-[#004563]" />
+                <MessageSquare className="w-5 h-5 text-primary" />
                 <span>{isRtl ? 'سوال دیگری دارید؟' : 'Have a Specific Question?'}</span>
               </h4>
 
@@ -127,7 +127,7 @@ export default function Faqs({ lang, content, onOpenContact }) {
 
               <button
                 onClick={onOpenContact}
-                className="w-full py-3 px-4 rounded-xl bg-[#004563] text-white font-bold text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98"
+                className="w-full py-3 px-4 rounded-xl bg-primary text-white font-bold text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98"
               >
                 {isRtl ? 'ارسال سوال یا پیام به تیم پشتیبانی' : 'Contact Support Directly'}
               </button>

@@ -75,7 +75,7 @@ export default function Standards({ lang, content }) {
         </div>
 
         {/* Bottom Banner Image / Info */}
-        <div className="bg-gradient-to-r from-[#004563] to-[#002b3d] border border-sky-300 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="bg-gradient-to-r from-primary to-[#002b3d] border border-sky-300 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-5">
             <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
               <ShieldAlert className="w-7 h-7 text-sky-300" />
