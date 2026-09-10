@@ -12,10 +12,6 @@ export default function AboutPage() {
 
   const content = siteContent[lang];
 
-  const handleOpenProduct = (productId) => {
-    window.location.href = `/products?product=${productId}`;
-  };
-
   return (
     <div
       dir={content.dir}
@@ -32,14 +28,12 @@ export default function AboutPage() {
         <AboutUs
           lang={lang}
           content={content}
-          onOpenProduct={handleOpenProduct}
         />
       </main>
 
       <Footer
         lang={lang}
         content={content}
-        onOpenProduct={handleOpenProduct}
       />
     </div>
   );

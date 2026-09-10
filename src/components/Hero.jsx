@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ShieldCheck, Cpu, BatteryCharging, Zap, ArrowRight, ArrowLeft } from 'lucide-react';
 
-export default function Hero({ lang, content, onSelectProduct, onOpenContact }) {
+export default function Hero({ lang, content, onOpenContact }) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isAnimating, setIsAnimating] = useState(false);
@@ -115,14 +116,14 @@ export default function Hero({ lang, content, onSelectProduct, onOpenContact }) 
               key={`cta-${activeSlideIndex}`}
               className="flex flex-wrap items-center gap-4 animate-slide-up-fade animation-delay-400"
             >
-              <button
+              <Link
+                href={`/products/${currentSlide.id}`}
                 id={`hero-cta-${currentSlide.id}`}
-                onClick={() => onSelectProduct(currentSlide.id)}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#004563] font-bold text-sm sm:text-base hover:bg-sky-50 shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all"
               >
                 <span>{currentSlide.primaryCta}</span>
                 {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-              </button>
+              </Link>
 
               <button
                 onClick={onOpenContact}

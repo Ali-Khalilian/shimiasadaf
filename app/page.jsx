@@ -107,7 +107,6 @@ export default function Home() {
           <Hero
             lang={lang}
             content={content}
-            onSelectProduct={handleOpenProduct}
             onOpenContact={handleOpenContact}
           />
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import { CheckCircle2, Award, Shield, Cpu, RefreshCw } from 'lucide-react';
 
-export default function AboutUs({ lang, content, onOpenProduct }) {
+export default function AboutUs({ lang, content }) {
   const isRtl = lang === 'fa';
   const about = content.about;
 
@@ -103,18 +104,18 @@ export default function AboutUs({ lang, content, onOpenProduct }) {
 
             {/* Action buttons */}
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => onOpenProduct('m300')}
+              <Link
+                href="/products/m300"
                 className="px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary transition-all shadow-md active:scale-95"
               >
                 {isRtl ? 'بررسی پایانه M300' : 'Explore M300'}
-              </button>
-              <button
-                onClick={() => onOpenProduct('m600')}
+              </Link>
+              <Link
+                href="/products/m600"
                 className="px-5 py-2.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 font-bold text-sm hover:bg-slate-200 transition-all active:scale-95"
               >
                 {isRtl ? 'بررسی پایانه M600' : 'Explore M600'}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

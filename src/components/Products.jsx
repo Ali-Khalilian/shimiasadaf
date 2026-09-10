@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Cpu, Battery, Wifi, CreditCard, Printer, Check, ArrowRight, ArrowLeft, Shield, SlidersHorizontal, Info } from 'lucide-react';
 
-export default function Products({ lang, content, onSelectProduct, onOpenContact }) {
+export default function Products({ lang, content, onOpenContact }) {
   const isRtl = lang === 'fa';
   const products = content.products;
   const [selectedVariant, setSelectedVariant] = useState({
@@ -188,14 +189,14 @@ export default function Products({ lang, content, onSelectProduct, onOpenContact
 
               {/* Action buttons */}
               <div className="pt-4 border-t border-slate-100 flex items-center gap-3">
-                <button
+                <Link
+                  href={`/products/${prod.id}`}
                   id={`btn-details-${prod.id}`}
-                  onClick={() => onSelectProduct(prod.id)}
                   className="flex-1 py-3 px-4 rounded-xl bg-[#004563] text-white font-bold text-xs sm:text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
                 >
                   <span>{products.viewDetails}</span>
                   {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-                </button>
+                </Link>
 
                 <button
                   onClick={onOpenContact}

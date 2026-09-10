@@ -1,34 +1,15 @@
 'use client'
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, { useState } from 'react';
 import Navbar from '../../src/components/Navbar';
 import Products from '../../src/components/Products';
-import ProductModal from '../../src/components/ProductModal';
 import Footer from '../../src/components/Footer';
 import { siteContent } from '../../src/data/content';
 
-function ProductsContent() {
+export default function ProductsPage() {
   const [lang, setLang] = useState('fa');
-  const [selectedProductId, setSelectedProductId] = useState(null);
-  const searchParams = useSearchParams();
 
   const content = siteContent[lang];
-
-  useEffect(() => {
-    const product = searchParams.get('product');
-    if (product && (product === 'm300' || product === 'm600')) {
-      setSelectedProductId(product);
-    }
-  }, [searchParams]);
-
-  const handleOpenProduct = (productId) => {
-    setSelectedProductId(productId);
-  };
-
-  const handleCloseProduct = () => {
-    setSelectedProductId(null);
-  };
 
   const handleOpenContact = () => {
     window.location.href = '/contact';
@@ -50,7 +31,6 @@ function ProductsContent() {
         <Products
           lang={lang}
           content={content}
-          onSelectProduct={handleOpenProduct}
           onOpenContact={handleOpenContact}
         />
       </main>
@@ -59,26 +39,6 @@ function ProductsContent() {
         lang={lang}
         content={content}
       />
-
-      {selectedProductId && (
-        <ProductModal
-          productId={selectedProductId}
-          onClose={handleCloseProduct}
-          lang={lang}
-          content={content}
-          onOpenContact={handleOpenContact}
-        />
-      )}
     </div>
-  );
-}
-
-export default function ProductsPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-900 flex items-center justify-center">
-      <div className="text-white">Loading...</div>
-    </div>}>
-      <ProductsContent />
-    </Suspense>
   );
 }

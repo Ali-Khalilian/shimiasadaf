@@ -144,7 +144,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                 <div className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} pt-2 w-56 z-50`}>
                   <div className="bg-[#003147] border border-white/15 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
                     <Link
-                      href="/products?product=m300"
+                      href="/products/m300"
                       onClick={() => {
                         setProductsDropdown(false);
                       }}
@@ -162,7 +162,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                     </Link>
 
                     <Link
-                      href="/products?product=m600"
+                      href="/products/m600"
                       onClick={() => {
                         setProductsDropdown(false);
                       }}
