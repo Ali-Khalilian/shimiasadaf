@@ -1,13 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useLanguage } from '../../src/contexts/LanguageContext';
 import Navbar from '../../src/components/Navbar';
 import AboutUs from '../../src/components/AboutUs';
 import Footer from '../../src/components/Footer';
 import { siteContent } from '../../src/data/content';
 
 export default function AboutPage() {
-  const [lang, setLang] = useState('fa');
+  const { lang, setLang } = useLanguage();
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   const content = siteContent[lang];

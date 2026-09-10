@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useLanguage } from '../../src/contexts/LanguageContext';
 import Navbar from '../../src/components/Navbar';
 import ContactSection from '../../src/components/ContactSection';
 import Footer from '../../src/components/Footer';
 import { siteContent } from '../../src/data/content';
 
 export default function ContactPage() {
-  const [lang, setLang] = useState('fa');
+  const { lang, setLang } = useLanguage();
 
   const content = siteContent[lang];
 

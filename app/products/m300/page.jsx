@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useLanguage } from '../../../src/contexts/LanguageContext';
 import Link from 'next/link';
 import Navbar from '../../../src/components/Navbar';
 import Footer from '../../../src/components/Footer';
@@ -8,7 +9,7 @@ import { siteContent } from '../../../src/data/content';
 import { ChevronRight, ChevronLeft, ShieldCheck, Cpu, Battery, Wifi, CreditCard, Printer, CheckCircle2 } from 'lucide-react';
 
 export default function M300Page() {
-  const [lang, setLang] = useState('fa');
+  const { lang, setLang } = useLanguage();
   const [activeTab, setActiveTab] = useState('specs');
 
   const content = siteContent[lang];

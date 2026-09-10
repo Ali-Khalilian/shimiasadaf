@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../src/contexts/LanguageContext';
 import Navbar from '../src/components/Navbar';
 import Hero from '../src/components/Hero';
 import Ticker from '../src/components/Ticker';
@@ -12,7 +13,7 @@ import Preloader from '../src/components/Preloader';
 import { siteContent } from '../src/data/content';
 
 export default function Home() {
-  const [lang, setLang] = useState('fa');
+  const { lang, setLang, isInitialized } = useLanguage();
   const [activeSection, setActiveSection] = useState('hero');
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
