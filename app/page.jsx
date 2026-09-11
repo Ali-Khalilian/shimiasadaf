@@ -6,6 +6,7 @@ import Navbar from '../src/components/Navbar';
 import Hero from '../src/components/Hero';
 import Ticker from '../src/components/Ticker';
 import Strengths from '../src/components/Strengths';
+import Standards from '../src/components/Standards';
 import SupportBanner from '../src/components/SupportBanner';
 import Footer from '../src/components/Footer';
 import ProductModal from '../src/components/ProductModal';
@@ -114,6 +115,8 @@ export default function Home() {
           <Ticker lang={lang} content={content} />
 
           <Strengths lang={lang} content={content} />
+
+          <Standards lang={lang} content={content} />
 
           <SupportBanner
             lang={lang}
