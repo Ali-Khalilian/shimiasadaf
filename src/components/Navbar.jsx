@@ -265,7 +265,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
             <Link
               href="/contact"
               id="navbar-cta-btn"
-              className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-white text-primary font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all shadow-md active:scale-95"
+              className="hidden sm:inline-flex w-40 items-center justify-center px-4 py-2 rounded-lg bg-white text-primary font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all shadow-md active:scale-95"
             >
               {content.nav.contactBtn}
             </Link>
