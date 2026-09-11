@@ -94,7 +94,7 @@ export default function M300Page() {
                   </div>
                   <button
                     onClick={handleOpenContact}
-                    className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-[#003147] transition-all shadow-lg"
+                    className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-all shadow-lg"
                   >
                     {isRtl ? 'درخواست قیمت و مشاوره' : 'Request Quote & Consultation'}
                   </button>
@@ -195,7 +195,7 @@ export default function M300Page() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-primary to-[#002b3d] rounded-3xl p-8 text-center shadow-xl">
+          <div className="bg-gradient-to-r from-primary to-primary-dark rounded-3xl p-8 text-center shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-3">
               {isRtl ? 'آماده سفارش M300 هستید؟' : 'Ready to Order M300?'}
             </h3>

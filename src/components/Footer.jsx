@@ -11,7 +11,7 @@ export default function Footer({ lang, content }) {
   };
 
   return (
-    <footer className="bg-[#002e42] text-white pt-16 pb-12 border-t border-white/10 w-full overflow-hidden">
+    <footer className="bg-primary-dark text-white pt-16 pb-12 border-t border-white/10 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Col 1: About Brand (5 cols) */}

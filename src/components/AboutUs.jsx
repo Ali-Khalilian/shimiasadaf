@@ -106,7 +106,7 @@ export default function AboutUs({ lang, content }) {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/products/m300"
-                className="px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary transition-all shadow-md active:scale-95"
+                className="px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-all shadow-md active:scale-95"
               >
                 {isRtl ? 'بررسی پایانه M300' : 'Explore M300'}
               </Link>

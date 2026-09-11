@@ -9,7 +9,7 @@ export default function Ticker({ lang, content }) {
   const items = [1, 2, 3, 4];
 
   return (
-    <div className="py-3 bg-[#003147] text-white overflow-hidden border-y border-white/10 relative z-20 w-full">
+    <div className="py-3 bg-primary-dark text-white overflow-hidden border-y border-white/10 relative z-20 w-full">
       <div className="flex select-none whitespace-nowrap animate-ticker items-center">
         {items.map((i) => (
           <div key={i} className="flex items-center gap-6 mx-4 shrink-0">

@@ -107,7 +107,7 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
 
             <button
               onClick={onOpenContact}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-[#003147] text-white font-bold text-sm sm:text-base shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-sm sm:text-base shadow-md transition-all active:scale-95"
             >
               <span>{support.btn}</span>
               {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

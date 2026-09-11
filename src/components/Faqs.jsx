@@ -127,7 +127,7 @@ export default function Faqs({ lang, content, onOpenContact }) {
 
               <button
                 onClick={onOpenContact}
-                className="w-full py-3 px-4 rounded-xl bg-primary text-white font-bold text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98"
+                className="w-full py-3 px-4 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-all shadow-md active:scale-98"
               >
                 {isRtl ? 'ارسال سوال یا پیام به تیم پشتیبانی' : 'Contact Support Directly'}
               </button>

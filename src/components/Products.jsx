@@ -58,7 +58,7 @@ export default function Products({ lang, content, onOpenContact }) {
 
                 {/* Product Image Stage */}
                 <div className="relative h-64 sm:h-72 rounded-2xl bg-gradient-to-b from-slate-100 to-slate-50 flex items-center justify-center p-6 mb-6 overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(#004563_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(theme(colors.primary.DEFAULT)_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
                   <img
                     src={prod.image}
                     alt={prod.title}
@@ -192,7 +192,7 @@ export default function Products({ lang, content, onOpenContact }) {
                 <Link
                   href={`/products/${prod.id}`}
                   id={`btn-details-${prod.id}`}
-                  className="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-[#003147] transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
+                  className="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-dark transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
                 >
                   <span>{products.viewDetails}</span>
                   {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

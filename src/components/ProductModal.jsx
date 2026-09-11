@@ -226,7 +226,7 @@ export default function ProductModal({ productId, onClose, lang, content, onOpen
                 onClose();
                 onOpenContact();
               }}
-              className="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-primary hover:bg-[#003147] text-white text-sm font-bold shadow-md transition-all active:scale-95"
+              className="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-md transition-all active:scale-95"
             >
               {isRtl ? 'ثبت سفارش / استعلام قیمت' : 'Inquire for Bulk Orders'}
             </button>

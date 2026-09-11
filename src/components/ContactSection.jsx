@@ -216,7 +216,7 @@ export default function ContactSection({ lang, content }) {
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="w-full py-3.5 px-6 rounded-xl bg-primary hover:bg-primary text-white font-bold text-sm shadow-md transition-all active:scale-98 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-sm shadow-md transition-all active:scale-98 flex items-center justify-center gap-2"
                   >
                     <Send className="w-4 h-4" />
                     <span>{status === 'submitting' ? c.form.submitting : c.form.submit}</span>

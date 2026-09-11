@@ -41,7 +41,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
         isScrolled
-          ? 'bg-primary/95 backdrop-blur-md shadow-lg shadow-primary/20 py-3 border-b border-white/10'
+          ? 'bg-primary shadow-lg shadow-primary/20 py-3 border-b border-white/10'
           : 'bg-primary py-4 border-b border-white/10'
       }`}
     >
@@ -142,7 +142,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
 
               {productsDropdown && (
                 <div className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} pt-2 w-56 z-50`}>
-                  <div className="bg-[#003147] border border-white/15 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
+                  <div className="bg-primary-dark border border-white/15 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
                     <Link
                       href="/products/m300"
                       onClick={() => {
@@ -285,7 +285,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#003147] border-b border-white/10 px-4 pt-3 pb-6 mt-3 animate-fadeIn">
+        <div className="lg:hidden bg-primary-dark border-b border-white/10 px-4 pt-3 pb-6 mt-3 animate-fadeIn">
           <div className="flex flex-col space-y-1">
             <Link
               href="/"
