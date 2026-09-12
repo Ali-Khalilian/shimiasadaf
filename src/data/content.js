@@ -176,6 +176,8 @@ export const siteContent = {
       titleHighlight: 'OEM و ODM',
       subtitle: 'متخصصان حوزه پرداخت و تولید سفارشی تجهیزات پرداخت الکترونیک متناسب با نیاز سازمانی و برند اختصاصی شما',
       intro: 'ما نیازهای گوناگون کسب‌وکارها را از طریق قابلیت‌های گسترده OEM و ODM پوشش می‌دهیم. شرکای ما می‌توانند از طرح‌های اختصاصی خود یا از دانش آماده ما جهت کاهش زمان ورود به بازار استفاده نمایند.',
+      info1: 'در میراکل، ما پشتیبانی فنی شبانه‌روزی ارائه می‌دهیم و عملکرد روان و حل سریع مشکلات را برای راهکارهای پرداخت سفارشی خود تضمین می‌کنیم. شبکه پشتیبانی جهانی ما، در صورت نیاز، هم تشخیص از راه دور و هم کمک در محل را ارائه می‌دهد و خدمات شخصی‌سازی‌شده و راهنمایی‌های تخصصی را برای حفظ عملکرد روان کسب و کار شما ارائه می‌دهد.',
+      info2:'',
       pillars: [
         {
           title: 'طراحی و توسعه سخت‌افزار اختصاصی',
@@ -484,6 +486,8 @@ export const siteContent = {
       titleHighlight: 'OEM & ODM Services',
       subtitle: 'Global payment hardware experts tailoring customized POS solutions to match your corporate identity and operational targets.',
       intro: 'We cater to diverse business requirements through our OEM and ODM capabilities. This allows partners to either utilize their own specialized designs via OEM or leverage our ready-to-customize expertise through ODM to dramatically shorten time-to-market.',
+      info1: 'At Shimia Sadaf, we provide 24/7 technical support and ensure smooth operations for your custom payment solutions. Our global support network offers both remote diagnostics and on-site assistance when needed, delivering personalized guidance to maintain uninterrupted business performance.',
+      info2: '',
       pillars: [
         {
           title: 'Custom Hardware Development',

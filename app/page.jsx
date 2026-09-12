@@ -52,17 +52,17 @@ export default function Home() {
       : 'Shimia Sadaf - Smart POS Payment Terminals';
   }, [lang, content.dir]);
 
-  const handleNavigate = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const handleNavigate = (sectionId) => {
+  //   setActiveSection(sectionId);
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
-  const handleOpenProduct = (productId) => {
-    window.location.href = `/products?product=${productId}`;
-  };
+  // const handleOpenProduct = (productId) => {
+  //   window.location.href = `/products?product=${productId}`;
+  // };
 
   const handleCloseProduct = () => {
     setSelectedProductId(null);

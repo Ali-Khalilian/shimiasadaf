@@ -70,25 +70,32 @@ export default function OemOdm({ lang, content, onOpenContact }) {
           ))}
         </div>
 
+
+        <p className='p-4 my-20 bg-white border border-slate-400 rounded-2xl flex items-center gap-3.5 border-primary shadow-md transition-all group'>{oem.info1}</p>
+
+      
+
         {/* Banner CTA Box */}
         <div className="rounded-3xl bg-primary text-white p-8 sm:p-12 relative overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
 
-          <div className="relative z-10 max-w-3xl">
-            <h3 className="text-xl sm:text-3xl font-black mb-3">
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between">
+            <div className="ml-5">
+              <h3 className="text-xl sm:text-3xl text-center md:text-start font-black mb-3">
               {isRtl
                 ? 'پایانه اختصاصی کسب‌وکار شما با استانداردهای بین‌المللی'
                 : 'Your Brand, Your Innovation, Our Hardware Expertise'}
             </h3>
-            <p className="text-slate-200 text-sm sm:text-base leading-relaxed mb-8">
+            <p className="text-slate-200 lg:text-nowrap text-center md:text-start text-sm sm:text-base leading-relaxed mb-8">
               {isRtl
                 ? 'از تغییر ظاهر، رنگ و برندینگ تا طراحی کامل بردهای الکترونیکی و فریمور اختصاصی، تیم مهندسی شیمیا صدف در تمام مراحل همراه شماست.'
                 : 'From custom branding, chassis colors, and packaging to ground-up board design and secure firmware development, our engineering team handles it all.'}
             </p>
+            </div>
 
             <button
               onClick={onOpenContact}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-primary font-bold text-sm sm:text-base hover:bg-slate-100 shadow-xl transition-all active:scale-95"
+              className="inline-flex items-center gap-2 px-6 h-16 py-5 rounded-xl bg-white text-primary font-bold text-sm sm:text-base hover:bg-slate-100 shadow-xl transition-all active:scale-95"
             >
               <span>{isRtl ? 'درخواست مشاوره OEM/ODM' : 'Schedule OEM/ODM Consultation'}</span>
               {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}

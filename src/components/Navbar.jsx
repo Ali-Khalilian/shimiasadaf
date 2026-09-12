@@ -67,13 +67,6 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               <Mail className="w-3.5 h-3.5 text-sky-300" />
               <span>info@shimiasadaf.com</span>
             </a>
-            <a
-              href="tel:+8613522300616"
-              className="flex items-center gap-1.5 hover:text-white transition-colors font-mono"
-            >
-              <Phone className="w-3.5 h-3.5 text-sky-300" />
-              <span dir="ltr">+86 13522300616</span>
-            </a>
           </div>
         </div>
       </div>
@@ -265,7 +258,7 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
             <Link
               href="/contact"
               id="navbar-cta-btn"
-              className="hidden sm:inline-flex w-40 items-center justify-center px-4 py-2 rounded-lg bg-white text-primary font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all shadow-md active:scale-95"
+              className="hidden sm:inline-flex whitespace-nowrap items-center justify-center px-4 py-2 rounded-lg bg-white text-primary font-bold text-xs sm:text-sm hover:bg-slate-100 transition-all shadow-md active:scale-95"
             >
               {content.nav.contactBtn}
             </Link>
