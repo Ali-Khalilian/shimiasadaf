@@ -14,7 +14,6 @@ export default function Footer({ lang, content }) {
     <footer className="bg-primary-dark text-white pt-16 pb-12 border-t border-white/10 w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-          {/* Col 1: About Brand (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-white/10 p-1.5 flex items-center justify-center border border-white/20">
@@ -42,7 +41,6 @@ export default function Footer({ lang, content }) {
             </div>
           </div>
 
-          {/* Col 2: Quick Links (3 cols) */}
           <div className="lg:col-span-3">
             <h4 className="text-sm font-bold uppercase tracking-wider text-sky-200 mb-4">
               {f.quickLinks}
@@ -107,7 +105,6 @@ export default function Footer({ lang, content }) {
             </ul>
           </div>
 
-          {/* Col 3: Direct Contact (4 cols) */}
           <div className="lg:col-span-4">
             <h4 className="text-sm font-bold uppercase tracking-wider text-sky-200 mb-4">
               {f.contactHeading}
@@ -132,7 +129,6 @@ export default function Footer({ lang, content }) {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>{f.copyright}</p>
 
