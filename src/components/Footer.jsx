@@ -123,16 +123,6 @@ export default function Footer({ lang, content }) {
                 <span>info@shimiasadaf.com</span>
               </a>
 
-              <a
-                href="tel:+8613522300616"
-                className="flex items-center gap-2.5 hover:text-white transition-colors font-mono"
-              >
-                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-sky-300" />
-                </div>
-                <span dir="ltr">+86 13522300616</span>
-              </a>
-
               <div className="pt-2 text-xs text-slate-400">
                 {isRtl
                   ? 'طراحی، بومی‌سازی و تولید پایانه‌های پرداخت الکترونیک هوشمند.'
