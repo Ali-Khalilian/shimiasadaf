@@ -79,27 +79,6 @@ export default function ContactSection({ lang, content }) {
               </div>
             </div>
 
-            {/* Phone Card */}
-            <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-4 shadow-xs hover:border-primary transition-all">
-              <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 shadow-sm">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xs font-semibold text-slate-500 mb-1">
-                  {c.phoneLabel}
-                </div>
-                <p
-                  className="text-base sm:text-lg font-bold text-primary hover:underline font-mono"
-                  dir="ltr"
-                >
-                  +031 31234567
-                </p>
-                <p className="text-xs text-slate-500 mt-1">
-                  {isRtl ? 'پشتیبانی فنی و هماهنگی خط تولید بین‌المللی' : 'Technical support & international line coordination'}
-                </p>
-              </div>
-            </div>
-
             {/* Hours Card */}
             <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-4 shadow-xs">
               <div className="w-12 h-12 rounded-xl bg-slate-200 text-primary flex items-center justify-center shrink-0">

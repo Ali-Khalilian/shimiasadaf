@@ -88,21 +88,6 @@ export default function SupportBanner({ lang, content, onOpenContact }) {
                   </div>
                 </div>
               </a>
-
-              <a
-                href="tel:+8613522300616"
-                className="p-4 bg-white border border-slate-200 rounded-2xl flex items-center gap-3.5 hover:border-primary hover:shadow-md transition-all group"
-              >
-                <div className="w-11 h-11 rounded-xl bg-sky-50 text-primary flex items-center justify-center group-hover:scale-105 transition-transform">
-                  <PhoneCall className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-500">{isRtl ? 'تماس با کارشناس' : 'Technical Hotline'}</div>
-                  <div className="text-sm font-bold text-slate-900 font-mono" dir="ltr">
-                    +86 13522300616
-                  </div>
-                </div>
-              </a>
             </div>
 
             <button
