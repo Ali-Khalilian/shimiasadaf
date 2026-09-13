@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Navbar from '../../../src/components/Navbar';
 import Footer from '../../../src/components/Footer';
 import { siteContent } from '../../../src/data/content';
-import { ChevronRight, ChevronLeft, ShieldCheck, Cpu, Battery, Wifi, CreditCard, Printer, CheckCircle2 } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ShieldCheck, Cpu, Battery, Wifi, CreditCard, Printer, CheckCircle2, Download } from 'lucide-react';
 
 export default function M300Page() {
   const { lang, setLang } = useLanguage();
@@ -26,6 +26,14 @@ export default function M300Page() {
 
   const handleOpenContact = () => {
     window.location.href = '/contact';
+  };
+
+  const handleDownloadCatalog = () => {
+    // Direct download of the catalog
+    const link = document.createElement('a');
+    link.href = '/catalogs/m300-rtos.pdf';
+    link.download = 'M300-RTOS-Catalog.pdf';
+    link.click();
   };
 
   return (
@@ -92,12 +100,21 @@ export default function M300Page() {
                       </div>
                     ))}
                   </div>
-                  <button
-                    onClick={handleOpenContact}
-                    className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-all shadow-lg"
-                  >
-                    {isRtl ? 'درخواست قیمت و مشاوره' : 'Request Quote & Consultation'}
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button
+                      onClick={handleOpenContact}
+                      className="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-all shadow-lg"
+                    >
+                      {isRtl ? 'درخواست قیمت و مشاوره' : 'Request Quote & Consultation'}
+                    </button>
+                    <button
+                      onClick={handleDownloadCatalog}
+                      className="px-6 py-3 bg-slate-700 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2"
+                    >
+                      <Download className="w-5 h-5" />
+                      {isRtl ? 'دانلود کاتالوگ' : 'Download Catalog'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
