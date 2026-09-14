@@ -1,0 +1,16 @@
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'miracle_backend.settings')
+django.setup()
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+admin = User.objects.get(username='admin')
+admin.set_password('admin123')
+admin.save()
+
+print('✅ رمز عبور admin با موفقیت تنظیم شد')
+print('Username: admin')
+print('Password: admin123')
