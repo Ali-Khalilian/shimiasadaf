@@ -171,7 +171,6 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
                               {isRtl ? product.subtitle_fa : product.subtitle_en}
                             </div>
                           </div>
-                          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
                         </Link>
                       ))
                     ) : (
