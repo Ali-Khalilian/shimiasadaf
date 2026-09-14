@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Globe, Menu, X, ChevronDown, Mail, Phone, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { api } from '../lib/api';
 
 export default function Navbar({ lang, setLang, content, activeSection, onNavigate, onOpenProduct }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdown, setProductsDropdown] = useState(false);
+  const [apiProducts, setApiProducts] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,21 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // دریافت محصولات از API
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const data = await api.getActiveProducts();
+        setApiProducts(data);
+      } catch (err) {
+        console.error('خطا در دریافت محصولات Navbar:', err);
+        // در صورت خطا، از محصولات ثابت استفاده می‌کنیم
+        setApiProducts([]);
+      }
+    }
+    fetchProducts();
   }, []);
 
   const handleNavClick = (sectionId) => {
@@ -136,41 +153,67 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               {productsDropdown && (
                 <div className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} pt-2 w-56 z-50`}>
                   <div className="bg-primary-dark border border-white/15 rounded-xl shadow-2xl p-2 backdrop-blur-xl">
-                    <Link
-                      href="/products/m300"
-                      onClick={() => {
-                        setProductsDropdown(false);
-                      }}
-                      className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
-                    >
-                      <div>
-                        <div className="text-white text-sm font-semibold group-hover:text-sky-300 whitespace-nowrap">
-                          {content.nav.m300}
-                        </div>
-                        <div className="text-xs text-slate-300">
-                          RTOS / Linux (285g)
-                        </div>
-                      </div>
-                      <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
-                    </Link>
+                    {apiProducts.length > 0 ? (
+                      apiProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          href={`/products/${product.id}`}
+                          onClick={() => {
+                            setProductsDropdown(false);
+                          }}
+                          className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
+                        >
+                          <div>
+                            <div className="text-white text-sm font-semibold group-hover:text-sky-300 whitespace-nowrap">
+                              {isRtl ? product.title_fa : product.title_en}
+                            </div>
+                            <div className="text-xs text-slate-300">
+                              {isRtl ? product.subtitle_fa : product.subtitle_en}
+                            </div>
+                          </div>
+                          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                        </Link>
+                      ))
+                    ) : (
+                      // Fallback به محصولات ثابت اگر API خطا داد
+                      <>
+                        <Link
+                          href="/products/m300"
+                          onClick={() => {
+                            setProductsDropdown(false);
+                          }}
+                          className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
+                        >
+                          <div>
+                            <div className="text-white text-sm font-semibold group-hover:text-sky-300 whitespace-nowrap">
+                              {content.nav.m300}
+                            </div>
+                            <div className="text-xs text-slate-300">
+                              RTOS / Linux (285g)
+                            </div>
+                          </div>
+                          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                        </Link>
 
-                    <Link
-                      href="/products/m600"
-                      onClick={() => {
-                        setProductsDropdown(false);
-                      }}
-                      className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
-                    >
-                      <div>
-                        <div className="text-white text-sm font-semibold group-hover:text-sky-300 whitespace-nowrap">
-                          {content.nav.m600}
-                        </div>
-                        <div className="text-xs text-slate-300">
-                          Android / Linux (5000mAh)
-                        </div>
-                      </div>
-                      <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
-                    </Link>
+                        <Link
+                          href="/products/m600"
+                          onClick={() => {
+                            setProductsDropdown(false);
+                          }}
+                          className="w-full text-start p-2.5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group"
+                        >
+                          <div>
+                            <div className="text-white text-sm font-semibold group-hover:text-sky-300 whitespace-nowrap">
+                              {content.nav.m600}
+                            </div>
+                            <div className="text-xs text-slate-300">
+                              Android / Linux (5000mAh)
+                            </div>
+                          </div>
+                          <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white" />
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
@@ -293,7 +336,9 @@ export default function Navbar({ lang, setLang, content, activeSection, onNaviga
               className="text-start py-2.5 px-3 rounded-lg text-slate-100 font-medium hover:bg-white/10 transition-colors flex items-center justify-between"
             >
               <span>{content.nav.products}</span>
-              <span className="text-xs bg-white/10 text-sky-200 px-2 py-0.5 rounded">M300 & M600</span>
+              <span className="text-xs bg-white/10 text-sky-200 px-2 py-0.5 rounded">
+                {apiProducts.length > 0 ? `${apiProducts.length} محصول` : 'M300 & M600'}
+              </span>
             </Link>
             <Link
               href="/oem"

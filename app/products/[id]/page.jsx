@@ -1,40 +1,163 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../../src/contexts/LanguageContext';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Navbar from '../../../src/components/Navbar';
 import Footer from '../../../src/components/Footer';
 import { siteContent } from '../../../src/data/content';
-import { ChevronRight, ChevronLeft, ShieldCheck, Cpu, Battery, Wifi, CreditCard, Printer, CheckCircle2, Download } from 'lucide-react';
+import { api, getImageURL } from '../../../src/lib/api';
+import { 
+  ChevronRight, ChevronLeft, ShieldCheck, Cpu, Battery, 
+  Wifi, CreditCard, Printer, CheckCircle2, Download, 
+  Loader2, AlertCircle 
+} from 'lucide-react';
 
-export default function M300Page() {
+export default function ProductDetailPage() {
   const { lang, setLang } = useLanguage();
+  const params = useParams();
+  const productId = params.id;
+  
   const [activeTab, setActiveTab] = useState('specs');
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const content = siteContent[lang];
   const isRtl = lang === 'fa';
-  const product = content.products.items.find((p) => p.id === 'm300');
 
-  if (!product) return null;
+  // دریافت محصول از API
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        setLoading(true);
+        const data = await api.getProduct(productId);
+        setProduct(data);
+        setError(null);
+      } catch (err) {
+        console.error('خطا در دریافت محصول:', err);
+        setError(err.message);
+        // fallback به داده‌های استاتیک
+        const staticProduct = content.products.items.find((p) => p.id === productId);
+        setProduct(staticProduct);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-  // Convert specs object to array
-  const specsArray = Object.entries(product.specs).map(([key, value]) => ({
-    label: key.charAt(0).toUpperCase() + key.slice(1),
-    value: value
-  }));
+    if (productId) {
+      fetchProduct();
+    }
+  }, [productId, lang]);
+
+  if (loading) {
+    return (
+      <div
+        dir={content.dir}
+        className={`min-h-screen flex flex-col font-vazir w-full overflow-x-hidden bg-slate-50 ${lang === 'en' ? 'font-en' : ''}`}
+      >
+        <Navbar lang={lang} setLang={setLang} content={content} activeSection="products" />
+        <main className="flex-grow pt-24 pb-16 flex items-center justify-center">
+          <div className="text-center">
+            <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
+            <p className="text-slate-600">
+              {isRtl ? 'در حال بارگذاری اطلاعات محصول...' : 'Loading product details...'}
+            </p>
+          </div>
+        </main>
+        <Footer lang={lang} content={content} />
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div
+        dir={content.dir}
+        className={`min-h-screen flex flex-col font-vazir w-full overflow-x-hidden bg-slate-50 ${lang === 'en' ? 'font-en' : ''}`}
+      >
+        <Navbar lang={lang} setLang={setLang} content={content} activeSection="products" />
+        <main className="flex-grow pt-24 pb-16 flex items-center justify-center">
+          <div className="text-center max-w-md">
+            <AlertCircle className="w-16 h-16 text-amber-500 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              {isRtl ? 'محصول یافت نشد' : 'Product Not Found'}
+            </h2>
+            <p className="text-slate-600 mb-6">
+              {isRtl
+                ? 'متأسفانه محصول مورد نظر یافت نشد.'
+                : 'Sorry, the requested product could not be found.'}
+            </p>
+            <Link
+              href="/products"
+              className="inline-block px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary-dark transition-all"
+            >
+              {isRtl ? 'بازگشت به محصولات' : 'Back to Products'}
+            </Link>
+          </div>
+        </main>
+        <Footer lang={lang} content={content} />
+      </div>
+    );
+  }
+
+  // تبدیل داده‌های API به فرمت مناسب
+  const staticProduct = content.products.items.find((p) => p.id === productId);
+  
+  const displayProduct = {
+    id: product.id,
+    title: lang === 'fa' ? (product.title_fa || product.title) : (product.title_en || product.enTitle || product.title),
+    enTitle: product.title_en || product.enTitle,
+    tag: product.tag,
+    // fallback به تصاویر استاتیک
+    image: getImageURL(product.image) || staticProduct?.image || `/images/${product.id}-rtos-1.jpg`,
+    banner: getImageURL(product.banner) || staticProduct?.banner || `/images/miracle-home-banner-new-4.jpg`,
+    summary: lang === 'fa' ? (product.summary_fa || product.summary) : (product.summary_en || product.summary),
+    specs: product.specs || {
+      display: product.display,
+      os: product.os_type,
+      processor: product.processor,
+      memory: product.memory,
+      battery: product.battery,
+      connectivity: product.connectivity,
+      keyboard: product.keyboard,
+      simSam: product.sim_sam,
+      dimensions: product.dimensions,
+      printer: product.printer,
+      cardReaders: product.card_readers,
+      certifications: product.certifications,
+    },
+    features: product.features?.map(f => lang === 'fa' ? f.feature_fa : f.feature_en) || product.features || [],
+    highlights: product.highlights || [],
+    catalog_file: product.catalog_file,
+  };
+
+  const specsArray = Object.entries(displayProduct.specs)
+    .filter(([key, value]) => value)
+    .map(([key, value]) => ({
+      label: key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1'),
+      value: value
+    }));
 
   const handleOpenContact = () => {
     window.location.href = '/contact';
   };
 
   const handleDownloadCatalog = () => {
-    // Direct download of the catalog
-    const link = document.createElement('a');
-    link.href = '/catalogs/m300-rtos.pdf';
-    link.download = 'M300-RTOS-Catalog.pdf';
-    link.click();
+    if (displayProduct.catalog_file) {
+      window.open(displayProduct.catalog_file, '_blank');
+    } else {
+      // fallback به کاتالوگ استاتیک
+      const link = document.createElement('a');
+      link.href = `/catalogs/${productId}-${displayProduct.tag.toLowerCase().includes('rtos') ? 'rtos' : 'linux'}.pdf`;
+      link.download = `${productId.toUpperCase()}-Catalog.pdf`;
+      link.click();
+    }
   };
+
+  // پیدا کردن محصول بعدی برای نمایش
+  const otherProduct = productId === 'm300' ? 'm600' : 'm300';
 
   return (
     <div
@@ -50,34 +173,43 @@ export default function M300Page() {
 
       <main className="flex-grow pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Error Warning */}
+          {error && (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 flex items-center gap-3">
+              <AlertCircle className="w-5 h-5 text-amber-600" />
+              <p className="text-amber-800 text-sm">
+                {isRtl ? '⚠️ در حال نمایش اطلاعات از حافظه موقت' : '⚠️ Showing cached information'}
+              </p>
+            </div>
+          )}
+
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-slate-600 mb-6">
             <Link href="/" className="hover:text-sky-600">{content.nav.home}</Link>
             {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             <Link href="/products" className="hover:text-sky-600">{content.nav.products}</Link>
             {isRtl ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            <span className="text-slate-900 font-semibold">{product.title}</span>
+            <span className="text-slate-900 font-semibold">{displayProduct.title}</span>
           </div>
 
           {/* Product Header */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden mb-8">
             <div className="bg-primary text-white p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-4 flex-wrap">
                 <span className="text-xs font-mono font-bold bg-white/20 text-white px-2.5 py-1 rounded-full uppercase">
-                  M300
+                  {displayProduct.id.toUpperCase()}
                 </span>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black">{product.title}</h1>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black">{displayProduct.title}</h1>
               </div>
-              <p className="text-slate-200 text-base sm:text-lg">{product.summary}</p>
+              <p className="text-slate-200 text-base sm:text-lg">{displayProduct.summary}</p>
             </div>
 
-            {/* Product Image & Quick Info */}
             <div className="p-6 sm:p-8 bg-gradient-to-br from-slate-50 to-white">
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="w-full lg:w-1/2 bg-white rounded-2xl p-8 shadow-inner flex items-center justify-center border border-slate-200">
                   <img
-                    src={product.image}
-                    alt={product.title}
+                    src={displayProduct.image}
+                    alt={displayProduct.title}
                     className="max-w-full h-auto max-h-96 object-contain filter drop-shadow-xl"
                   />
                 </div>
@@ -159,7 +291,10 @@ export default function M300Page() {
             {activeTab === 'specs' && (
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  {isRtl ? 'مشخصات فنی کامل M300' : 'M300 Complete Technical Specifications'}
+                  {isRtl 
+                    ? `مشخصات فنی کامل ${displayProduct.id.toUpperCase()}`
+                    : `${displayProduct.id.toUpperCase()} Complete Technical Specifications`
+                  }
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {specsArray.map((spec, idx) => (
@@ -175,10 +310,13 @@ export default function M300Page() {
             {activeTab === 'features' && (
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  {isRtl ? 'قابلیت‌ها و ویژگی‌های M300' : 'M300 Features & Capabilities'}
+                  {isRtl 
+                    ? `قابلیت‌ها و ویژگی‌های ${displayProduct.id.toUpperCase()}`
+                    : `${displayProduct.id.toUpperCase()} Features & Capabilities`
+                  }
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {product.features.map((feature, idx) => (
+                  {displayProduct.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-4 bg-sky-50 rounded-xl border border-sky-200">
                       <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
                       <span className="text-sm text-slate-800">{feature}</span>
@@ -191,7 +329,10 @@ export default function M300Page() {
             {activeTab === 'security' && (
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  {isRtl ? 'امنیت و گواهینامه‌های M300' : 'M300 Security & Certifications'}
+                  {isRtl 
+                    ? `امنیت و گواهینامه‌های ${displayProduct.id.toUpperCase()}`
+                    : `${displayProduct.id.toUpperCase()} Security & Certifications`
+                  }
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div className="p-5 bg-emerald-50 rounded-xl border border-emerald-200">
@@ -204,7 +345,9 @@ export default function M300Page() {
                   </div>
                   <div className="p-5 bg-emerald-50 rounded-xl border border-emerald-200">
                     <ShieldCheck className="w-8 h-8 text-emerald-600 mb-3" />
-                    <div className="text-sm font-bold text-slate-900">PayPass & payWave</div>
+                    <div className="text-sm font-bold text-slate-900">
+                      {displayProduct.tag.includes('RTOS') ? 'PayPass & payWave' : 'CE & RoHS'}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -214,7 +357,10 @@ export default function M300Page() {
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-primary to-primary-dark rounded-3xl p-8 text-center shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-3">
-              {isRtl ? 'آماده سفارش M300 هستید؟' : 'Ready to Order M300?'}
+              {isRtl 
+                ? `آماده سفارش ${displayProduct.id.toUpperCase()} هستید؟`
+                : `Ready to Order ${displayProduct.id.toUpperCase()}?`
+              }
             </h3>
             <p className="text-slate-200 mb-6 max-w-2xl mx-auto">
               {isRtl
@@ -229,10 +375,13 @@ export default function M300Page() {
                 {isRtl ? 'تماس با ما' : 'Contact Us'}
               </button>
               <Link
-                href="/products/m600"
+                href={`/products/${otherProduct}`}
                 className="px-8 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-bold hover:bg-white/20 transition-all"
               >
-                {isRtl ? 'مشاهده M600' : 'View M600'}
+                {isRtl 
+                  ? `مشاهده ${otherProduct.toUpperCase()}`
+                  : `View ${otherProduct.toUpperCase()}`
+                }
               </Link>
             </div>
           </div>

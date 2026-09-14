@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Cpu, Battery, Wifi, CreditCard, Printer, Check, ArrowRight, ArrowLeft, Shield, SlidersHorizontal, Info } from 'lucide-react';
+import { Cpu, Battery, Wifi, CreditCard, Printer, Check, ArrowRight, ArrowLeft, Shield, SlidersHorizontal, Info, Loader2 } from 'lucide-react';
+import { api, getImageURL } from '../lib/api';
 
 export default function Products({ lang, content, onOpenContact }) {
   const isRtl = lang === 'fa';
@@ -11,6 +12,30 @@ export default function Products({ lang, content, onOpenContact }) {
     m300: 'rtos',
     m600: 'android'
   });
+  const [apiProducts, setApiProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // دریافت محصولات از API
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const data = await api.getActiveProducts();
+        setApiProducts(data);
+        setError(null);
+      } catch (err) {
+        console.error('خطا در دریافت محصولات:', err);
+        setError(err.message);
+        // در صورت خطا، از داده‌های استاتیک استفاده می‌کنیم
+        setApiProducts(products.items);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   return (
     <section id="products" className="py-20 bg-slate-50 text-slate-900 w-full overflow-hidden">
@@ -32,22 +57,60 @@ export default function Products({ lang, content, onOpenContact }) {
           </p>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 text-primary animate-spin" />
+            <span className="mr-3 text-slate-600">{isRtl ? 'در حال بارگذاری محصولات...' : 'Loading products...'}</span>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-center">
+            <p className="text-amber-800 text-sm">
+              {isRtl ? '⚠️ در حال نمایش محصولات از حافظه موقت' : '⚠️ Showing cached products'}
+            </p>
+          </div>
+        )}
+
         {/* 2-Column Product Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-          {products.items.map((prod) => (
-            <div
-              key={prod.id}
-              className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-            >
+        {!loading && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {apiProducts.map((prod) => {
+              // استفاده از داده‌های API یا fallback به داده‌های استاتیک
+              const staticProduct = products.items?.find(p => p.id === prod.id);
+              const displayData = {
+                id: prod.id,
+                title: lang === 'fa' ? (prod.title_fa || prod.title) : (prod.title_en || prod.enTitle || prod.title),
+                enTitle: prod.title_en || prod.enTitle,
+                tag: prod.tag,
+                // اگر API تصویر نداره، از استاتیک استفاده کن
+                image: getImageURL(prod.image) || staticProduct?.image || `/images/${prod.id}-rtos-1.jpg`,
+                summary: lang === 'fa' ? (prod.summary_fa || prod.summary) : (prod.summary_en || prod.summary),
+                specs: {
+                  display: prod.display || prod.specs?.display || '',
+                  battery: prod.battery || prod.specs?.battery || '',
+                  connectivity: prod.connectivity || prod.specs?.connectivity || '',
+                  printer: prod.printer || prod.specs?.printer || '58mm',
+                },
+                features: prod.features?.map(f => lang === 'fa' ? f.feature_fa : f.feature_en) || prod.features || []
+              };
+
+              return (
+                <div
+                  key={displayData.id}
+                  className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                >
               <div>
                 {/* Header info */}
                 <div className="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100">
                   <div>
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-primary bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
-                      {prod.tag}
+                      {displayData.tag}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-2">
-                      {prod.title}
+                      {displayData.title}
                     </h3>
                   </div>
 
@@ -60,15 +123,15 @@ export default function Products({ lang, content, onOpenContact }) {
                 <div className="relative h-64 sm:h-72 rounded-2xl bg-gradient-to-b from-slate-100 to-slate-50 flex items-center justify-center p-6 mb-6 overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(theme(colors.primary.DEFAULT)_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
                   <img
-                    src={prod.image}
-                    alt={prod.title}
+                    src={displayData.image}
+                    alt={displayData.title}
                     className="max-h-full max-w-full object-contain filter drop-shadow-xl group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
                 {/* Summary */}
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
-                  {prod.summary}
+                  {displayData.summary}
                 </p>
 
                 {/* OS Variant Switcher */}
@@ -76,12 +139,12 @@ export default function Products({ lang, content, onOpenContact }) {
                   <div className="text-xs font-semibold text-slate-700 mb-2 flex items-center justify-between">
                     <span>{products.selectOs}</span>
                     <span className="text-primary font-bold uppercase">
-                      {selectedVariant[prod.id]}
+                      {selectedVariant[displayData.id]}
                     </span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
-                    {prod.id === 'm300' ? (
+                    {displayData.id === 'm300' ? (
                       <>
                         <button
                           onClick={() => setSelectedVariant({ ...selectedVariant, m300: 'rtos' })}
@@ -139,7 +202,7 @@ export default function Products({ lang, content, onOpenContact }) {
                       <span className="truncate">{isRtl ? 'نمایشگر' : 'Display'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                      {prod.specs.display}
+                      {displayData.specs.display}
                     </div>
                   </div>
 
@@ -149,7 +212,7 @@ export default function Products({ lang, content, onOpenContact }) {
                       <span className="truncate">{isRtl ? 'باتری' : 'Battery'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                      {prod.specs.battery}
+                      {displayData.specs.battery}
                     </div>
                   </div>
 
@@ -159,7 +222,7 @@ export default function Products({ lang, content, onOpenContact }) {
                       <span className="truncate">{isRtl ? 'ارتباطات' : 'Connectivity'}</span>
                     </div>
                     <div className="text-xs sm:text-sm font-bold text-slate-800 truncate">
-                      {prod.specs.connectivity}
+                      {displayData.specs.connectivity}
                     </div>
                   </div>
 
@@ -176,7 +239,7 @@ export default function Products({ lang, content, onOpenContact }) {
 
                 {/* Features Bullets */}
                 <div className="space-y-2 mb-8">
-                  {prod.features.map((feat, idx) => (
+                  {displayData.features.slice(0, 4).map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
                       <div className="w-4 h-4 rounded-full bg-sky-100 text-primary flex items-center justify-center shrink-0 mt-0.5">
                         <Check className="w-3 h-3" />
@@ -190,8 +253,8 @@ export default function Products({ lang, content, onOpenContact }) {
               {/* Action buttons */}
               <div className="pt-4 border-t border-slate-100 flex items-center gap-3">
                 <Link
-                  href={`/products/${prod.id}`}
-                  id={`btn-details-${prod.id}`}
+                  href={`/products/${displayData.id}`}
+                  id={`btn-details-${displayData.id}`}
                   className="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-dark transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
                 >
                   <span>{products.viewDetails}</span>
@@ -206,8 +269,10 @@ export default function Products({ lang, content, onOpenContact }) {
                 </button>
               </div>
             </div>
-          ))}
-        </div>
+          )
+        })}
+      </div>
+    )}
       </div>
     </section>
   );

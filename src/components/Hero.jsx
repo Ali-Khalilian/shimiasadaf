@@ -3,14 +3,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ShieldCheck, Cpu, BatteryCharging, Zap, ArrowRight, ArrowLeft } from 'lucide-react';
+import { api } from '../lib/api';
 
 export default function Hero({ lang, content, onOpenContact }) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isAnimating, setIsAnimating] = useState(false);
+  const [apiProducts, setApiProducts] = useState([]);
   const autoPlayRef = useRef(null);
   const slides = content.hero.slides;
   const isRtl = lang === 'fa';
+
+  // دریافت محصولات از API برای به‌روزرسانی highlights
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const products = await api.getActiveProducts();
+        setApiProducts(products);
+      } catch (err) {
+        console.error('خطا در دریافت محصولات برای Hero:', err);
+        // در صورت خطا، از داده‌های استاتیک استفاده می‌شود
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   
   const startAutoPlay = () => {
@@ -56,7 +73,17 @@ export default function Hero({ lang, content, onOpenContact }) {
     startAutoPlay();
   };
 
+  // ترکیب داده‌های API و استاتیک
   const currentSlide = slides[activeSlideIndex];
+  const apiProduct = apiProducts.find(p => p.id === currentSlide?.id);
+  
+  // اگر محصول از API دریافت شده، highlights را از API بگیر
+  const displayHighlights = apiProduct?.highlights?.length > 0 
+    ? apiProduct.highlights.map(h => ({
+        label: h.label,
+        value: h.value
+      }))
+    : currentSlide?.highlights || [];
 
   return (
     <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-primary text-white w-full">
@@ -95,7 +122,7 @@ export default function Hero({ lang, content, onOpenContact }) {
               key={`specs-${activeSlideIndex}`}
               className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3"
             >
-              {currentSlide.highlights.map((h, idx) => (
+              {displayHighlights.slice(0, 4).map((h, idx) => (
                 <div
                   key={idx}
                   style={{ animationDelay: `${150 + idx * 50}ms` }}
