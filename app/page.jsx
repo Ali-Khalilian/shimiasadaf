@@ -108,7 +108,6 @@ export default function Home() {
         <main className="flex-grow">
           <Hero
             lang={lang}
-            content={content}
             onOpenContact={handleOpenContact}
           />
 

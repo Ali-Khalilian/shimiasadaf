@@ -5,11 +5,15 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight, ShieldCheck, Cpu, BatteryCharging, Zap, ArrowRight, ArrowLeft } from 'lucide-react';
 import { api } from '../lib/api';
 
-export default function Hero({ lang, onOpenContact }) {
+/**
+ * کامپوننت Hero با اتصال کامل به API بک‌اند
+ * این کامپوننت اسلایدرها را مستقیماً از Django دریافت می‌کند
+ */
+export default function HeroWithAPI({ lang = 'fa', onOpenContact }) {
+  const [slides, setSlides] = useState([]);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isAnimating, setIsAnimating] = useState(false);
-  const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const autoPlayRef = useRef(null);
@@ -23,7 +27,7 @@ export default function Hero({ lang, onOpenContact }) {
         const slidersData = await api.getActiveSliders();
         
         if (slidersData && slidersData.length > 0) {
-          // تبدیل داده‌های API به فرمت مورد نیاز
+          // تبدیل داده‌های API به فرمت مورد نیاز کامپوننت
           const formattedSlides = slidersData.map(slider => ({
             id: slider.slide_id,
             title: lang === 'fa' ? slider.title_fa : slider.title_en,
@@ -43,11 +47,11 @@ export default function Hero({ lang, onOpenContact }) {
           setSlides(formattedSlides);
           setError(null);
         } else {
-          setError(lang === 'fa' ? 'اسلایدری یافت نشد' : 'No slides found');
+          setError('اسلایدری یافت نشد');
         }
       } catch (err) {
         console.error('خطا در دریافت اسلایدرها:', err);
-        setError(lang === 'fa' ? 'خطا در بارگذاری اسلایدرها' : 'Error loading slides');
+        setError('خطا در بارگذاری اسلایدرها');
       } finally {
         setLoading(false);
       }
@@ -56,11 +60,8 @@ export default function Hero({ lang, onOpenContact }) {
     fetchSliders();
   }, [lang]);
 
-  
   const startAutoPlay = () => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    if (slides.length <= 1) return; // اگر فقط یک اسلاید داریم، autoplay نداشته باشیم
-    
     autoPlayRef.current = setInterval(() => {
       handleSlideChange('next');
     }, 7000);
@@ -94,7 +95,7 @@ export default function Hero({ lang, onOpenContact }) {
   };
 
   const handleManualSlideChange = (index) => {
-    if (isAnimating || index === activeSlideIndex || slides.length === 0) return;
+    if (isAnimating || index === activeSlideIndex) return;
     
     setDirection(index > activeSlideIndex ? 'next' : 'prev');
     setIsAnimating(true);
@@ -107,53 +108,27 @@ export default function Hero({ lang, onOpenContact }) {
   // حالت Loading
   if (loading) {
     return (
-      <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-primary text-white w-full">
-        <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400 rounded-full filter blur-[120px]"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary rounded-full filter blur-[120px]"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center min-h-[500px]">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-              <p className="text-slate-300">
-                {lang === 'fa' ? 'در حال بارگذاری...' : 'Loading...'}
-              </p>
-            </div>
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
           </div>
         </div>
       </section>
     );
   }
 
-  // حالت Error یا عدم وجود اسلاید
+  // حالت Error
   if (error || slides.length === 0) {
     return (
-      <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-primary text-white w-full">
-        <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400 rounded-full filter blur-[120px]"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary rounded-full filter blur-[120px]"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center min-h-[500px]">
-            <div className="text-center max-w-2xl">
-              <div className="text-6xl mb-4">⚠️</div>
-              <h2 className="text-2xl font-bold mb-3">
-                {error || (lang === 'fa' ? 'اسلایدری یافت نشد' : 'No slides found')}
-              </h2>
-              <p className="text-slate-300 mb-6">
-                {lang === 'fa' 
-                  ? 'لطفاً از پنل ادمین اسلایدر اضافه کنید'
-                  : 'Please add slides from the admin panel'}
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <p className="text-xl mb-4">⚠️ {error || 'اسلایدری یافت نشد'}</p>
+              <p className="text-sm text-slate-300">
+                لطفاً از پنل ادمین اسلایدر اضافه کنید
               </p>
-              <a 
-                href="http://127.0.0.1:8000/admin/homepage/homeslider/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-sky-50 transition-all"
-              >
-                {lang === 'fa' ? '🔗 باز کردن پنل ادمین' : '🔗 Open Admin Panel'}
-              </a>
             </div>
           </div>
         </div>
@@ -178,7 +153,7 @@ export default function Hero({ lang, onOpenContact }) {
               key={`badge-${activeSlideIndex}`}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 border border-white/20 text-xs sm:text-sm font-medium text-sky-200 backdrop-blur-md animate-slide-fade-in"
             >
-              <ShieldCheck className="w-4 h-4 text-emerald-400 animate-pulse-subtle"/>
+              <ShieldCheck className="w-4 h-4 text-emerald-400 animate-pulse-subtle" />
               <span>{currentSlide.badge}</span>
             </div>
 
@@ -223,7 +198,6 @@ export default function Hero({ lang, onOpenContact }) {
             >
               <Link
                 href={currentSlide.customLink || `/products/${currentSlide.id}`}
-                id={`hero-cta-${currentSlide.id}`}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-primary font-bold text-sm sm:text-base hover:bg-sky-50 shadow-xl shadow-black/20 hover:scale-[1.02] active:scale-95 transition-all"
               >
                 <span>{currentSlide.primaryCta}</span>
@@ -303,14 +277,12 @@ export default function Hero({ lang, onOpenContact }) {
                 </span>
               </div>
 
-              {/* Terminal Image Display */}
               <div className="my-6 relative h-64 sm:h-72 flex items-center justify-center rounded-xl bg-gradient-to-b from-white/10 to-transparent p-4 overflow-hidden">
                 <img
                   src={currentSlide.image}
                   alt={currentSlide.title}
                   className="max-h-full max-w-full object-contain filter drop-shadow-2xl transition-all duration-700 group-hover:scale-110 group-hover:rotate-2 animate-zoom-in"
                   onError={(e) => {
-                    // Fallback to deviceImg if banner image fails
                     e.target.src = currentSlide.deviceImg;
                   }}
                 />
@@ -320,17 +292,6 @@ export default function Hero({ lang, onOpenContact }) {
                   <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-float-particle animation-delay-1000 opacity-50"></div>
                   <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-amber-400 rounded-full animate-float-particle animation-delay-2000 opacity-40"></div>
                 </div>
-              </div>
-
-              <div className="bg-black/20 rounded-xl p-2.5 sm:p-3 border border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-slate-200 animate-slide-up-fade animation-delay-200">
-                {currentSlide.highlights.slice(0, 3).map((h, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
-                    {idx === 0 && <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle shrink-0" />}
-                    {idx === 1 && <Cpu className="w-4 h-4 text-sky-400 animate-pulse-subtle shrink-0" />}
-                    {idx === 2 && <ShieldCheck className="w-4 h-4 text-amber-400 animate-pulse-subtle shrink-0" />}
-                    <span className="text-[10px] sm:text-xs whitespace-nowrap">{h.value}</span>
-                  </div>
-                ))}
               </div>
 
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>

@@ -26,6 +26,17 @@ export const siteContent = {
       m600: 'کارتخوان M600'
     },
     hero: {
+      // ⚠️ DEPRECATED: داده‌های اسلایدر اکنون از API دیتابیس دریافت می‌شوند
+      // این بخش فقط برای مرجع نگه داشته شده است
+      // برای مدیریت اسلایدرها به admin panel بروید:
+      // http://127.0.0.1:8000/admin/homepage/homeslider/
+      
+      slides: [
+        // داده‌های استاتیک دیگر استفاده نمی‌شوند
+        // همه اسلایدرها از Django API بارگذاری می‌شوند
+      ]
+      
+      /*
       slides: [
         {
           id: 'm600',
@@ -60,6 +71,7 @@ export const siteContent = {
           secondaryCta: 'درخواست سفارش سازمانی'
         }
       ]
+      */
     },
     about: {
       badge: 'درباره شیمیا صدف',
@@ -336,6 +348,17 @@ export const siteContent = {
       m600: 'M600 Terminal'
     },
     hero: {
+      // ⚠️ DEPRECATED: Slider data is now fetched from API database
+      // This section is kept for reference only
+      // To manage sliders, go to admin panel:
+      // http://127.0.0.1:8000/admin/homepage/homeslider/
+      
+      slides: [
+        // Static data is no longer used
+        // All sliders are loaded from Django API
+      ]
+      
+      /*
       slides: [
         {
           id: 'm600',
@@ -370,6 +393,7 @@ export const siteContent = {
           secondaryCta: 'Enterprise Bulk Inquiry'
         }
       ]
+      */
     },
     about: {
       badge: 'About Shimia Sadaf',

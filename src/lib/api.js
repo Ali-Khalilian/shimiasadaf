@@ -128,6 +128,45 @@ export const api = {
     });
     return response.ok;
   },
+
+  // ==================== SLIDER APIs ====================
+
+  /**
+   * دریافت تمام اسلایدرهای صفحه اصلی
+   * @param {Object} params - پارامترهای query (is_active, slide_id, search, ordering)
+   * @returns {Promise<Array>} لیست اسلایدرها
+   */
+  async getSliders(params = {}) {
+    const queryString = new URLSearchParams(params).toString();
+    const endpoint = `/sliders/${queryString ? `?${queryString}` : ''}`;
+    return fetchAPI(endpoint);
+  },
+
+  /**
+   * دریافت فقط اسلایدرهای فعال برای صفحه اصلی
+   * @returns {Promise<Array>} لیست اسلایدرهای فعال
+   */
+  async getActiveSliders() {
+    return fetchAPI('/sliders/active/');
+  },
+
+  /**
+   * دریافت جزئیات یک اسلاید
+   * @param {number} id - شناسه اسلاید
+   * @returns {Promise<Object>} جزئیات کامل اسلاید
+   */
+  async getSlider(id) {
+    return fetchAPI(`/sliders/${id}/`);
+  },
+
+  /**
+   * دریافت Highlights یک اسلاید خاص
+   * @param {number} id - شناسه اسلاید
+   * @returns {Promise<Array>} لیست highlights
+   */
+  async getSliderHighlights(id) {
+    return fetchAPI(`/sliders/${id}/highlights/`);
+  },
 };
 
 /**
