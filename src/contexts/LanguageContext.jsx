@@ -8,7 +8,7 @@ export function LanguageProvider({ children }) {
   const [lang, setLangState] = useState('fa');
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // بارگذاری زبان از localStorage در ابتدا
+
   useEffect(() => {
     const savedLang = localStorage.getItem('siteLanguage');
     if (savedLang && (savedLang === 'fa' || savedLang === 'en')) {
@@ -17,12 +17,10 @@ export function LanguageProvider({ children }) {
     setIsInitialized(true);
   }, []);
 
-  // ذخیره زبان در localStorage هنگام تغییر
+
   const setLang = (newLang) => {
     setLangState(newLang);
     localStorage.setItem('siteLanguage', newLang);
-    
-    // تنظیم direction و lang در document
     document.documentElement.lang = newLang;
     document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
   };
