@@ -147,7 +147,7 @@ export default function Hero({ lang, onOpenContact }) {
                   : 'Please add slides from the admin panel'}
               </p>
               <a 
-                href="http://127.0.0.1:8000/admin/homepage/homeslider/"
+                href="http://192.168.30.129/admin/homepage/homeslider/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-sky-50 transition-all"
@@ -323,14 +323,18 @@ export default function Hero({ lang, onOpenContact }) {
               </div>
 
               <div className="bg-black/20 rounded-xl p-2.5 sm:p-3 border border-white/10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs text-slate-200 animate-slide-up-fade animation-delay-200">
-                {currentSlide.highlights.slice(0, 3).map((h, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
-                    {idx === 0 && <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle shrink-0" />}
-                    {idx === 1 && <Cpu className="w-4 h-4 text-sky-400 animate-pulse-subtle shrink-0" />}
-                    {idx === 2 && <ShieldCheck className="w-4 h-4 text-amber-400 animate-pulse-subtle shrink-0" />}
-                    <span className="text-[10px] sm:text-xs whitespace-nowrap">{h.value}</span>
-                  </div>
-                ))}
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <BatteryCharging className="w-4 h-4 text-emerald-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">{currentSlide.id === 'm600' ? '5000 mAh' : '2600 mAh'}</span>
+                </div>
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <Cpu className="w-4 h-4 text-sky-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">{currentSlide.id === 'm600' ? 'Quad A7' : 'Secure 32-bit'}</span>
+                </div>
+                <div className="flex items-center gap-1.5 hover:scale-105 transition-transform shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-amber-400 animate-pulse-subtle shrink-0" />
+                  <span className="text-[10px] sm:text-xs whitespace-nowrap">PCI PTS 7.x</span>
+                </div>
               </div>
 
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>

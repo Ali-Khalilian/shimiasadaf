@@ -1,6 +1,6 @@
 // API Service برای ارتباط با بک‌اند Django
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://192.168.30.129:8000/api';
 
 /**
  * تابع helper برای fetch با error handling
@@ -186,7 +186,7 @@ export function getImageURL(imagePath) {
   
   // اگر از /media شروع می‌شود، به URL بک‌اند اضافه کن
   if (imagePath.startsWith('/media/')) {
-    return `http://127.0.0.1:8000${imagePath}`;
+    return `http://192.168.30.129:8000${imagePath}`;
   }
   
   // اگر نسبی است، همان را برگردان (برای تصاویر استاتیک در public)

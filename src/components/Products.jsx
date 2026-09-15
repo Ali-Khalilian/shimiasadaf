@@ -27,7 +27,6 @@ export default function Products({ lang, content, onOpenContact }) {
       } catch (err) {
         console.error('خطا در دریافت محصولات:', err);
         setError(err.message);
-        // در صورت خطا، از داده‌های استاتیک استفاده می‌کنیم
         setApiProducts(products.items);
       } finally {
         setLoading(false);
